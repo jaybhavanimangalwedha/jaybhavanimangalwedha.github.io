@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>२०१७ - उत्सव गॅलरी</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --gold-primary: #fbc531;
+      --card-bg: #111111;
+      --card-border: rgba(251, 197, 49, 0.2);
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: #fff;
+      font-family: 'Mukta', sans-serif;
+      margin: 0; padding: 0;
+    }
+    
+    /* Top Bar */
+    .header {
+      background: rgba(5, 5, 5, 0.95);
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .back-btn {
+      color: var(--gold-primary);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .page-title {
+      text-align: center;
+      color: var(--gold-primary);
+      font-size: 24px;
+      font-weight: 800;
+      margin: 20px 0;
+    }
+    .page-title span { font-size: 15px; color: #aaa; display: block; font-weight: 600; margin-top: 5px;}
+    
+    /* Gallery Grid */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+      gap: 15px; 
+      margin-bottom: 30px; 
+      align-items: start; 
+    }
+    
+    .photo-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .photo-card:hover { border-color: rgba(251, 197, 49, 0.5); transform: translateY(-3px); }
+    
+    .photo-card img {
+      width: 100%;
+      height: 150px; 
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--card-border);
+    }
+    
+    .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); }
+
+    .section-divider {
+      display: flex; align-items: center; text-align: center; color: var(--gold-primary); margin: 30px 0 20px;
+    }
+    .section-divider::before, .section-divider::after {
+      content: ''; flex: 1; border-bottom: 1px solid var(--card-border);
+    }
+    .section-divider span { padding: 0 15px; font-size: 18px; font-weight: 800; }
+
+    /* Full Screen Pop-up */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      padding-top: 50px; 
+      left: 0; top: 0; 
+      width: 100%; height: 100%; 
+      background-color: rgba(0,0,0,0.95);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 95%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 5px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #fff;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-btn:hover { color: var(--gold-primary); }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> मागे जा</a>
+  </div>
+
+  <div class="container">
+    <h1 class="page-title">२०१७ उत्सव गॅलरी <span>श्री जय भवानी नवरात्र महोत्सव मंडळ</span></h1>
+
+    <!-- 9 Days Photos -->
+    <div class="section-divider"><span>९ दिवसांचे फोटो</span></div>
+    <div class="grid">
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day1.jpg" alt="Day 1" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+1'">
+        <div class="photo-title">पहिला दिवस</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day2.jpg" alt="Day 2" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+2'">
+        <div class="photo-title">दुसरा दिवस</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day3.jpg" alt="Day 3" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+3'">
+        <div class="photo-title">तिसरा दिवस</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day4.jpg" alt="Day 4" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+4'">
+        <div class="photo-title">चौथा दिवस</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day5.jpg" alt="Day 5" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+5'">
+        <div class="photo-title">पाचवा दिवस</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day6.jpg" alt="Day 6" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+6'">
+        <div class="photo-title">सहावा दिवस</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day7.jpg" alt="Day 7" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+7'">
+        <div class="photo-title">सातवा दिवस</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day8.jpg" alt="Day 8" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+8'">
+        <div class="photo-title">आठवा दिवस</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017day9.jpg" alt="Day 9" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+9'">
+        <div class="photo-title">नववा दिवस</div>
+      </div>
+    </div>
+
+    <!-- Other Photos (इतर) -->
+    <div class="section-divider"><span>इतर फोटो</span></div>
+    <div class="grid">
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017etc1.jpg" alt="Other 1" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Maha+Aarti'">
+        <div class="photo-title">महाआरती</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017etc2.jpg" alt="Other 2" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Mandap'">
+        <div class="photo-title">मंडप सजावट</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017etc3.jpg" alt="Other 3" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Visarjan'">
+        <div class="photo-title">विसर्जन मिरवणूक</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close-btn" onclick="closeFullImg()">&times;</span>
+    <img class="modal-content" id="fullImage">
+  </div>
+
+  <script>
+    function openFullImg(src) {
+      document.getElementById("imageModal").style.display = "block";
+      document.getElementById("fullImage").src = src;
+    }
+
+    function closeFullImg() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
