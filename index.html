@@ -76,7 +76,9 @@
     }
     .b-year-section { display: flex; flex-direction: column; }
     .b-year { font-family: 'Poppins', sans-serif; font-size: 45px; font-weight: 800; color: var(--gold-primary); line-height: 0.9; }
-    .b-coming { font-family: 'Mukta', sans-serif; font-weight: 700; font-size: 16px; color: var(--text-white); margin-top: 5px; letter-spacing: 1px; }
+    
+    /* बदल १: 'नवरात्र उत्सव' मोठे केले आहे */
+    .b-coming { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 24px; color: var(--text-white); margin-top: 5px; letter-spacing: 1px; }
 
     .countdown-container { display: flex; gap: 10px; z-index: 2; }
     .cd-box { 
@@ -122,7 +124,7 @@
       justify-content: center; font-size: 11px; color: #fff; text-shadow: none;
     }
 
-    /* Individual Card Colors (No images for 2018 to 2025) */
+    /* Individual Card Colors */
     .c25 { border-color: var(--c-2025); } 
     .c25 .year-title::after { background: var(--c-2025); } .c25 .card-btn-icon { background: var(--c-2025); color: #000; }
     .year-card-link:hover .c25 { box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
@@ -155,9 +157,7 @@
     .c18 .year-title::after { background: var(--c-2018); } .c18 .card-btn-icon { background: var(--c-2018); }
     .year-card-link:hover .c18 { box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3); }
 
-    /* ONLY 2017 Card - With clear image background */
     .c17 { 
-      /* कमी काळा इफेक्ट (Clear Image) */
       background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('banner2017.png'); 
       border-color: var(--c-2017); 
     } 
@@ -338,7 +338,7 @@
     <div class="banner-2026">
       <div class="b-year-section">
         <div class="b-year">2026</div>
-        <div class="b-coming">नवरात्रोत्सव २०२६</div>
+        <div class="b-coming">नवरात्र उत्सव</div>
       </div>
 
       <div class="countdown-container">
@@ -347,6 +347,12 @@
         <div class="cd-box"><span id="minutes">00</span><p>मिनिटे</p></div>
         <div class="cd-box"><span id="seconds">00</span><p>सेकंद</p></div>
       </div>
+    </div>
+
+    <!-- बदल २: वासापूजन 2026 सेक्शन -->
+    <div style="text-align: center; margin-top: 15px; margin-bottom: 35px;">
+      <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">वासापूजन 2026</h3>
+      <img src="Vasapujan2026.jpg" alt="वासापूजन 2026" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
     </div>
 
     <div class="grid-3x3">
@@ -411,12 +417,15 @@
           <a href="#" style="color: var(--gold-primary); text-decoration: none; font-size: 13px; font-weight: 600;">सर्व पाहा &rarr;</a>
         </div>
         <div class="updates-list">
+          
+          <!-- बदल ३: वासापूजन संपन्न सूचना -->
           <div class="update-item">
             <div class="update-text">
-              <span class="update-date">28 सप्टेंबर 2026</span>
-              <span class="update-title">नवरात्र महोत्सवाची तयारी पूर्ण !</span>
+              <span class="update-date">22 सप्टेंबर 2026</span>
+              <span class="update-title">वासापूजन संपन्न</span>
             </div>
           </div>
+
           <div class="update-item">
             <div class="update-text">
               <span class="update-date">25 सप्टेंबर 2026</span>
