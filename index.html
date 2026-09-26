@@ -89,7 +89,7 @@
     /* --- Gallery Grid --- */
     .grid-3x3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
 
-    /* Updated Card Styles for Full Click & Background */
+    /* Updated Card Styles */
     .year-card-link { text-decoration: none; display: block; }
     
     .year-card { 
@@ -115,47 +115,52 @@
       align-self: flex-start; display: inline-flex; align-items: center; justify-content: space-between; 
       padding: 5px 5px 5px 14px; background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255,255,255,0.3); 
       border-radius: 30px; color: #fff; font-size: 13px; text-decoration: none; min-width: 140px; 
-      font-weight: 600; transition: 0.3s; pointer-events: none;
+      font-weight: 600; transition: 0.3s; pointer-events: none; z-index: 2;
     }
     .card-btn-icon { 
       width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; 
       justify-content: center; font-size: 11px; color: #fff; text-shadow: none;
     }
 
-    /* Individual Card Multi-Colors & Background Images (Updated to banner2017.png) */
-    .c25 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2025); } 
+    /* Individual Card Colors (No images for 2018 to 2025) */
+    .c25 { border-color: var(--c-2025); } 
     .c25 .year-title::after { background: var(--c-2025); } .c25 .card-btn-icon { background: var(--c-2025); color: #000; }
     .year-card-link:hover .c25 { box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
 
-    .c24 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2024); } 
+    .c24 { border-color: var(--c-2024); } 
     .c24 .year-title::after { background: var(--c-2024); } .c24 .card-btn-icon { background: var(--c-2024); color: #000; }
     .year-card-link:hover .c24 { box-shadow: 0 5px 15px rgba(0, 206, 201, 0.3); }
 
-    .c23 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2023); } 
+    .c23 { border-color: var(--c-2023); } 
     .c23 .year-title::after { background: var(--c-2023); } .c23 .card-btn-icon { background: var(--c-2023); }
     .year-card-link:hover .c23 { box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3); }
 
-    .c22 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2022); } 
+    .c22 { border-color: var(--c-2022); } 
     .c22 .year-title::after { background: var(--c-2022); } .c22 .card-btn-icon { background: var(--c-2022); }
     .year-card-link:hover .c22 { box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3); }
 
-    .c21 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2021); } 
+    .c21 { border-color: var(--c-2021); } 
     .c21 .year-title::after { background: var(--c-2021); } .c21 .card-btn-icon { background: var(--c-2021); }
     .year-card-link:hover .c21 { box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3); }
 
-    .c20 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2020); } 
+    .c20 { border-color: var(--c-2020); } 
     .c20 .year-title::after { background: var(--c-2020); } .c20 .card-btn-icon { background: var(--c-2020); }
     .year-card-link:hover .c20 { box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
 
-    .c19 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2019); } 
+    .c19 { border-color: var(--c-2019); } 
     .c19 .year-title::after { background: var(--c-2019); } .c19 .card-btn-icon { background: var(--c-2019); color: #000; }
     .year-card-link:hover .c19 { box-shadow: 0 5px 15px rgba(0, 210, 211, 0.3); }
 
-    .c18 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2018); } 
+    .c18 { border-color: var(--c-2018); } 
     .c18 .year-title::after { background: var(--c-2018); } .c18 .card-btn-icon { background: var(--c-2018); }
     .year-card-link:hover .c18 { box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3); }
 
-    .c17 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('banner2017.png'); border-color: var(--c-2017); } 
+    /* ONLY 2017 Card - With clear image background */
+    .c17 { 
+      /* कमी काळा इफेक्ट (Clear Image) */
+      background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('banner2017.png'); 
+      border-color: var(--c-2017); 
+    } 
     .c17 .year-title::after { background: var(--c-2017); } .c17 .card-btn-icon { background: var(--c-2017); color: #000; }
     .year-card-link:hover .c17 { box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3); }
 
