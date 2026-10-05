@@ -21,6 +21,7 @@
       --card-border: rgba(251, 197, 49, 0.2);
 
       /* Distinct Colors for Gallery Years */
+      --c-2026: #ff4757; /* Navin color 2026 sathi */
       --c-2025: #e67e22; 
       --c-2024: #00cec9; 
       --c-2023: #e84393; 
@@ -52,6 +53,12 @@
       align-items: center; padding: 10px 20px;
     }
     .nav-brand { font-family: 'Mukta', sans-serif; font-weight: 800; color: var(--gold-primary); font-size: 24px; text-decoration: none; text-shadow: 0 0 10px rgba(251, 197, 49, 0.3); }
+    
+    /* नोंदणी क्रमांक स्टाईल */
+    .reg-number {
+      font-size: 13px; color: #888; font-weight: 600; margin-left: auto; margin-right: 15px; text-align: right; letter-spacing: 0.5px;
+    }
+    
     .nav-links { display: flex; gap: 20px; list-style: none; }
     .nav-links a { color: var(--text-white); text-decoration: none; font-size: 16px; font-weight: 600; transition: color 0.3s; }
     .nav-links a:hover { color: var(--gold-primary); }
@@ -76,8 +83,6 @@
     }
     .b-year-section { display: flex; flex-direction: column; }
     .b-year { font-family: 'Poppins', sans-serif; font-size: 45px; font-weight: 800; color: var(--gold-primary); line-height: 0.9; }
-    
-    /* बदल १: 'नवरात्र उत्सव' मोठे केले आहे */
     .b-coming { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 24px; color: var(--text-white); margin-top: 5px; letter-spacing: 1px; }
 
     .countdown-container { display: flex; gap: 10px; z-index: 2; }
@@ -125,6 +130,10 @@
     }
 
     /* Individual Card Colors */
+    .c26 { border-color: var(--c-2026); } 
+    .c26 .year-title::after { background: var(--c-2026); } .c26 .card-btn-icon { background: var(--c-2026); color: #fff; }
+    .year-card-link:hover .c26 { box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); }
+
     .c25 { border-color: var(--c-2025); } 
     .c25 .year-title::after { background: var(--c-2025); } .c25 .card-btn-icon { background: var(--c-2025); color: #000; }
     .year-card-link:hover .c25 { box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
@@ -294,6 +303,8 @@
     @media (max-width: 992px) {
       .grid-3x3 { grid-template-columns: 1fr; }
       .dashboard-container { grid-template-columns: 1fr; gap: 15px; }
+      
+      .reg-number { font-size: 11px; margin-right: 12px; }
 
       .banner-2026 { flex-direction: column; text-align: center; justify-content: center; padding: 25px 15px; }
       .countdown-container { margin-top: 10px; }
@@ -315,6 +326,9 @@
   <!-- Navigation Menu -->
   <nav class="navbar">
     <a href="#home" class="nav-brand">॥ जय भवानी ॥</a>
+    
+    <span class="reg-number">नोंदणी क्र. एफ २५९८८</span>
+
     <div class="menu-toggle" onclick="toggleMenu()">
       <i class="fa-solid fa-bars"></i>
     </div>
@@ -349,13 +363,22 @@
       </div>
     </div>
 
-    <!-- बदल २: वासापूजन 2026 सेक्शन -->
+    <!-- वासापूजन 2026 सेक्शन -->
     <div style="text-align: center; margin-top: 15px; margin-bottom: 35px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">वासापूजन 2026</h3>
       <img src="Vasapujan2026.jpg" alt="वासापूजन 2026" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
     </div>
 
     <div class="grid-3x3">
+      
+      <!-- 2026 Card matching others -->
+      <a href="#" class="year-card-link" style="cursor: not-allowed; opacity: 0.9;">
+        <div class="year-card c26">
+          <div class="year-title">2026</div>
+          <span class="card-btn">Coming Soon... <div class="card-btn-icon"><i class="fa-solid fa-lock"></i></div></span>
+        </div>
+      </a>
+
       <a href="#" class="year-card-link">
         <div class="year-card c25"><div class="year-title">2025</div><span class="card-btn">९ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
       </a>
@@ -418,7 +441,6 @@
         </div>
         <div class="updates-list">
           
-          <!-- बदल ३: वासापूजन संपन्न सूचना -->
           <div class="update-item">
             <div class="update-text">
               <span class="update-date">22 सप्टेंबर 2026</span>
