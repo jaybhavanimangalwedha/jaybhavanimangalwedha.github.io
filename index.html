@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- गुगल सर्चसाठी आवश्यक असलेले Meta Tags -->
+  <meta name="description" content="जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा. Jay Bhavani Navratra Mahotsav Mandal, Mangalwedha. नवरात्र उत्सव २०२६, वासापूजन, आरती वेळापत्रक, फोटो आणि व्हिडिओ गॅलरी.">
+  <meta name="keywords" content="Jay bhavani navratr mahotsav mandal mangalwedha, जय भवानी नवरात्र महोत्सव मंडळ मंगळवेढा, Navratri Mangalwedha 2026, Jay Bhavani Mandal, Mangalwedha Navratra">
+  <meta name="author" content="Jay Bhavani Navratra Mahotsav Mandal">
+  <meta name="robots" content="index, follow">
+  <!-- गुगल सर्च कन्सोल व्हेरिफिकेशन कोड (येथे तुमचा खरा कोड टाका) -->
+  <meta name="google-site-verification" content="तुमचा-व्हेरिफिकेशन-कोड-येथे-टाका" />
+  
   <title>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -278,26 +287,75 @@
     .share-section { text-align: center; margin: 30px 0 20px 0; }
     .share-btn {
       background: linear-gradient(90deg, #fbc531, #e1b12c);
-      color: #000; border: none; padding: 8px 25px; border-radius: 30px;
-      font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 197, 49, 0.3);
+      color: #000; border: none; padding: 6px 20px; border-radius: 30px;
+      font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(251, 197, 49, 0.3);
       display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
     }
     .share-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(251, 197, 49, 0.5); }
 
-    /* --- Footer --- */
+    /* --- Footer & Copyright --- */
     .footer {
-      text-align: center; margin-top: 20px; padding: 35px 15px;
+      text-align: center; margin-top: 20px; padding: 35px 15px 20px;
       border-top: 1px solid var(--card-border); background: #080808;
     }
     .quote { color: var(--gold-primary); font-size: 18px; font-weight: 700; margin-bottom: 15px; letter-spacing: 0.5px; }
-    .social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+    .social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
     .social-icons a {
       width: 38px; height: 38px; border: 1px solid var(--gold-primary); border-radius: 50%;
       display: flex; justify-content: center; align-items: center; color: var(--gold-primary); text-decoration: none;
       background: rgba(251, 197, 49, 0.05); transition: 0.3s; font-size: 16px;
     }
     .social-icons a:hover { background: var(--gold-primary); color: #000; }
-    .footer-text { color: #aaa; font-size: 14px; line-height: 1.6; }
+    
+    .footer-title {
+      color: var(--gold-primary); font-weight: 800; font-size: 18px; margin-bottom: 5px; display: block;
+    }
+    .footer-address {
+      color: #aaa; font-size: 14px; line-height: 1.6; margin-bottom: 25px; display: block;
+    }
+
+    /* नवीन प्रीमियम Copyright डिझाईन */
+    .copyright-box {
+      border-top: 1px dashed rgba(251, 197, 49, 0.3);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .copy-text {
+      color: #ddd;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .copy-text i {
+      color: var(--gold-primary);
+      font-size: 15px;
+    }
+    .copy-eng {
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+    .copy-link {
+      background: rgba(251, 197, 49, 0.1);
+      color: var(--gold-primary);
+      text-decoration: none;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(251, 197, 49, 0.3);
+      transition: 0.3s;
+    }
+    .copy-link:hover {
+      background: var(--gold-primary);
+      color: #000;
+    }
 
     /* --- Mobile Responsiveness --- */
     @media (max-width: 992px) {
@@ -375,7 +433,6 @@
       <a href="#" id="card2026" class="year-card-link" onclick="checkUnlock(event)">
         <div class="year-card c26">
           
-          <!-- 'Coming Soon' आता दुसरीकडे (कोपऱ्यात) ठेवले आहे आणि 10% blur (1px) दिले आहे -->
           <div id="comingSoonText" style="position: absolute; top: 15px; right: 15px; font-size: 15px; color: var(--gold-primary); font-weight: 800; font-style: italic; filter: blur(1px); letter-spacing: 1px; transition: 0.3s;">Coming Soon...</div>
 
           <div class="year-title">2026</div>
@@ -494,7 +551,7 @@
           <div class="loc-info">
             <div class="loc-title-text">उत्सव ठिकाण</div>
             <div class="loc-sub-text">मंगळवेढा, सोलापूर</div>
-            <a href="https://maps.app.goo.gl/JYXk81RxoUQd48sX8?g_st=ac" class="btn-action" style="padding: 4px 15px; font-size: 12px; margin-top: 5px;">Google Map &rarr;</a>
+            <a href="https://maps.app.goo.gl/JYXk81RxoUQd48sX8?g_st=ac" target="_blank" class="btn-action" style="padding: 4px 15px; font-size: 12px; margin-top: 5px;">Google Map &rarr;</a>
           </div>
         </div>
         
@@ -502,7 +559,7 @@
           <div class="loc-info">
             <div class="loc-title-text">आईचा गाभारा (वर्षभर)</div>
             <div class="loc-sub-text">मूळ मंदिर, मंगळवेढा</div>
-            <a href="https://maps.app.goo.gl/DzLALsyuFPx5reyB8" class="btn-action" style="padding: 4px 15px; font-size: 12px; margin-top: 5px;">Google Map &rarr;</a>
+            <a href="https://maps.app.goo.gl/DzLALsyuFPx5reyB8" target="_blank" class="btn-action" style="padding: 4px 15px; font-size: 12px; margin-top: 5px;">Google Map &rarr;</a>
           </div>
         </div>
       </div>
@@ -525,9 +582,20 @@
       <a href="#"><i class="fa-brands fa-instagram"></i></a>
       <a href="#"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    <div class="footer-text">
-      <span style="color:var(--gold-primary); font-weight:800; font-size: 18px;">॥ जय भवानी ॥</span><br>
-      नवरात्र महोत्सव मंडळ बाजार चौक, मंगळवेढा
+    
+    <span class="footer-title">॥ जय भवानी ॥</span>
+    <span class="footer-address">नवरात्र महोत्सव मंडळ बाजार चौक, मंगळवेढा</span>
+
+    <!-- Premium Copyright Box -->
+    <div class="copyright-box">
+      <span class="copy-text">
+        <i class="fa-regular fa-copyright"></i> 
+        २०२६ जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा
+      </span>
+      <span class="copy-eng">( Jay Bhavani Navratr Mahotsav Mandal, Mangalwedha )</span>
+      <a href="https://jaybhavanimangalwedha.github.io" class="copy-link">
+        jaybhavanimangalwedha.github.io
+      </a>
     </div>
   </footer>
 
@@ -558,7 +626,7 @@
         isUnlocked = true;
         btnText.style.filter = "none";
         btnIcon.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-        if (comingSoonText) comingSoonText.style.display = "none"; // वेळ झाल्यावर Coming Soon गायब होईल
+        if (comingSoonText) comingSoonText.style.display = "none"; 
         card2026.href = "2026.html"; 
       } else {
         isUnlocked = false;
@@ -580,7 +648,6 @@
       }
     }
 
-    // पेज लोड झाल्यावर आणि दर सेकंदाला चेक होईल
     checkUnlockStatus();
     setInterval(checkUnlockStatus, 1000);
 
