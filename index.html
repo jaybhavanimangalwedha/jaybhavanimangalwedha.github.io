@@ -374,9 +374,13 @@
       <!-- 2026 Card with Auto Unlock Script -->
       <a href="#" id="card2026" class="year-card-link" onclick="checkUnlock(event)">
         <div class="year-card c26">
+          
+          <!-- 'Coming Soon' आता दुसरीकडे (कोपऱ्यात) ठेवले आहे आणि 10% blur (1px) दिले आहे -->
+          <div id="comingSoonText" style="position: absolute; top: 15px; right: 15px; font-size: 15px; color: var(--gold-primary); font-weight: 800; font-style: italic; filter: blur(1px); letter-spacing: 1px; transition: 0.3s;">Coming Soon...</div>
+
           <div class="year-title">2026</div>
           <span class="card-btn" id="btn2026">
-            <span id="btnText" style="filter: blur(4px); transition: 0.3s;">Coming Soon...</span>
+            <span id="btnText" style="transition: 0.3s; filter: blur(1px);">९ दिवसांचे फोटो</span>
             <div class="card-btn-icon" id="btnIcon"><i class="fa-solid fa-lock"></i></div>
           </span>
         </div>
@@ -496,7 +500,7 @@
         
         <div class="loc-item">
           <div class="loc-info">
-            <div class="loc-title-text">아이चा गाभारा (वर्षभर) / मूळ मंदिर</div>
+            <div class="loc-title-text">आईचा गाभारा (वर्षभर)</div>
             <div class="loc-sub-text">मूळ मंदिर, मंगळवेढा</div>
             <a href="https://maps.app.goo.gl/DzLALsyuFPx5reyB8" class="btn-action" style="padding: 4px 15px; font-size: 12px; margin-top: 5px;">Google Map &rarr;</a>
           </div>
@@ -548,18 +552,22 @@
       const btnText = document.getElementById("btnText");
       const btnIcon = document.getElementById("btnIcon");
       const card2026 = document.getElementById("card2026");
+      const comingSoonText = document.getElementById("comingSoonText");
 
       if (now >= unlockTime) {
         isUnlocked = true;
-        btnText.innerText = "९ दिवसांचे फोटो";
         btnText.style.filter = "none";
         btnIcon.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-        card2026.href = "2026.html"; // जेव्हा पेज बनवाल तेव्हा फाईलचे नाव येथे टाका
+        if (comingSoonText) comingSoonText.style.display = "none"; // वेळ झाल्यावर Coming Soon गायब होईल
+        card2026.href = "2026.html"; 
       } else {
         isUnlocked = false;
-        btnText.innerText = "Coming Soon...";
-        btnText.style.filter = "blur(4px)";
+        btnText.style.filter = "blur(1px)";
         btnIcon.innerHTML = '<i class="fa-solid fa-lock"></i>';
+        if (comingSoonText) {
+          comingSoonText.style.display = "block";
+          comingSoonText.style.filter = "blur(1px)";
+        }
         card2026.href = "#";
       }
     }
