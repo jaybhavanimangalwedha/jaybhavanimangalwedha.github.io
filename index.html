@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- गुगल सर्चसाठी आवश्यक असलेले Meta Tags -->
   <meta name="description" content="जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा. Jay Bhavani Navratra Mahotsav Mandal, Mangalwedha. नवरात्र उत्सव २०२६, वासापूजन, आरती वेळापत्रक, फोटो आणि व्हिडिओ गॅलरी.">
   <meta name="keywords" content="Jay bhavani navratr mahotsav mandal mangalwedha, जय भवानी नवरात्र महोत्सव मंडळ मंगळवेढा, Navratri Mangalwedha 2026, Jay Bhavani Mandal, Mangalwedha Navratra">
   <meta name="author" content="Jay Bhavani Navratra Mahotsav Mandal">
   <meta name="robots" content="index, follow">
-  <!-- गुगल सर्च कन्सोल व्हेरिफिकेशन कोड (येथे तुमचा खरा कोड टाका) -->
+  <!-- गुगल सर्च कन्सोल व्हेरिफिकेशन कोड -->
   <meta name="google-site-verification" content="04KkHYVoO32MPqknsFVvb4KN2S9afrho-j2lUk4Y-tE" />
-  
+
   <title>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,11 +62,11 @@
       align-items: center; padding: 10px 20px;
     }
     .nav-brand { font-family: 'Mukta', sans-serif; font-weight: 800; color: var(--gold-primary); font-size: 24px; text-decoration: none; text-shadow: 0 0 10px rgba(251, 197, 49, 0.3); }
-    
+
     .reg-number {
       font-size: 13px; color: #888; font-weight: 600; margin-left: auto; margin-right: 15px; text-align: right; letter-spacing: 0.5px;
     }
-    
+
     .nav-links { display: flex; gap: 20px; list-style: none; }
     .nav-links a { color: var(--text-white); text-decoration: none; font-size: 16px; font-weight: 600; transition: color 0.3s; }
     .nav-links a:hover { color: var(--gold-primary); }
@@ -105,7 +105,7 @@
     .grid-3x3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
 
     .year-card-link { text-decoration: none; display: block; }
-    
+
     .year-card { 
       position: relative; height: 160px; border-radius: 12px; overflow: hidden; 
       display: flex; flex-direction: column; justify-content: center; padding: 20px; 
@@ -169,8 +169,12 @@
     .c19 .year-title::after { background: var(--c-2019); } .c19 .card-btn-icon { background: var(--c-2019); color: #000; }
     .year-card-link:hover .c19 { box-shadow: 0 5px 15px rgba(0, 210, 211, 0.3); }
 
-    .c18 { border-color: var(--c-2018); } 
-    .c18 .year-title::after { background: var(--c-2018); } .c18 .card-btn-icon { background: var(--c-2018); }
+    /* 2018 Card with background image (Updated with 2018cover.jpg) */
+    .c18 { 
+      background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2018/2018cover.jpg'); 
+      border-color: var(--c-2018); 
+    } 
+    .c18 .year-title::after { background: var(--c-2018); } .c18 .card-btn-icon { background: var(--c-2018); color: #fff; }
     .year-card-link:hover .c18 { box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3); }
 
     .c17 { 
@@ -306,7 +310,7 @@
       background: rgba(251, 197, 49, 0.05); transition: 0.3s; font-size: 16px;
     }
     .social-icons a:hover { background: var(--gold-primary); color: #000; }
-    
+
     .footer-title {
       color: var(--gold-primary); font-weight: 800; font-size: 18px; margin-bottom: 5px; display: block;
     }
@@ -361,7 +365,7 @@
     @media (max-width: 992px) {
       .grid-3x3 { grid-template-columns: 1fr; }
       .dashboard-container { grid-template-columns: 1fr; gap: 15px; }
-      
+
       .reg-number { font-size: 11px; margin-right: 12px; }
 
       .banner-2026 { flex-direction: column; text-align: center; justify-content: center; padding: 25px 15px; }
@@ -384,7 +388,7 @@
   <!-- Navigation Menu -->
   <nav class="navbar">
     <a href="#home" class="nav-brand">॥ जय भवानी ॥</a>
-    
+
     <span class="reg-number">नोंदणी क्र. एफ २५९८८</span>
 
     <div class="menu-toggle" onclick="toggleMenu()">
@@ -428,11 +432,11 @@
     </div>
 
     <div class="grid-3x3">
-      
+
       <!-- 2026 Card with Auto Unlock Script -->
       <a href="#" id="card2026" class="year-card-link" onclick="checkUnlock(event)">
         <div class="year-card c26">
-          
+
           <div id="comingSoonText" style="position: absolute; top: 15px; right: 15px; font-size: 15px; color: var(--gold-primary); font-weight: 800; font-style: italic; filter: blur(1px); letter-spacing: 1px; transition: 0.3s;">Coming Soon...</div>
 
           <div class="year-title">2026</div>
@@ -466,8 +470,9 @@
       <a href="#" class="year-card-link older-year">
         <div class="year-card c19"><div class="year-title">2019</div><span class="card-btn">९ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
       </a>
-      <a href="#" class="year-card-link older-year">
-        <div class="year-card c18"><div class="year-title">2018</div><span class="card-btn">९ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
+      <!-- 2018 Card (Updated) -->
+      <a href="2018.html" class="year-card-link older-year">
+        <div class="year-card c18"><div class="year-title">2018</div><span class="card-btn">११ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
       </a>
       <a href="2017.html" class="year-card-link older-year">
         <div class="year-card c17"><div class="year-title">2017</div><span class="card-btn">९ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
@@ -504,7 +509,7 @@
           <a href="#" style="color: var(--gold-primary); text-decoration: none; font-size: 13px; font-weight: 600;">सर्व पाहा &rarr;</a>
         </div>
         <div class="updates-list">
-          
+
           <div class="update-item">
             <div class="update-text">
               <span class="update-date">22 सप्टेंबर 2026</span>
@@ -546,7 +551,7 @@
       <!-- Location -->
       <div class="card location-card">
         <div class="card-title" style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot"></i> आमची ठिकाणे</div>
-        
+
         <div class="loc-item">
           <div class="loc-info">
             <div class="loc-title-text">उत्सव ठिकाण</div>
@@ -554,7 +559,7 @@
             <a href="https://maps.app.goo.gl/JYXk81RxoUQd48sX8?g_st=ac" target="_blank" class="btn-action" style="padding: 4px 15px; font-size: 12px; margin-top: 5px;">Google Map &rarr;</a>
           </div>
         </div>
-        
+
         <div class="loc-item">
           <div class="loc-info">
             <div class="loc-title-text">आईचा गाभारा (वर्षभर)</div>
@@ -582,7 +587,7 @@
       <a href="#"><i class="fa-brands fa-instagram"></i></a>
       <a href="#"><i class="fa-brands fa-youtube"></i></a>
     </div>
-    
+
     <span class="footer-title">॥ जय भवानी ॥</span>
     <span class="footer-address">नवरात्र महोत्सव मंडळ बाजार चौक, मंगळवेढा</span>
 
