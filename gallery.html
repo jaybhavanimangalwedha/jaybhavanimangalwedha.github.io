@@ -150,9 +150,9 @@
     const urlParams = new URLSearchParams(window.location.search);
     const year = urlParams.get('year') || '2017';
 
-    // टायटल बदलणे
+    // ब्राउझर टायटल आणि हेडिंग बरोबर सेट करणे
     document.getElementById('pageHeaderTitle').innerText = year + ' - उत्सव गॅलरी';
-    document.getElementById('mainTitle.innerHTML', year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>');
+    document.getElementById('mainTitle').innerHTML = year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>';
     
     // सुरक्षित बेस६4 पारदर्शक इमेज (ब्लिंक न होण्यासाठी)
     const fallbackImg = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
