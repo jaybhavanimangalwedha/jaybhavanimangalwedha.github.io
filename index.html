@@ -101,13 +101,15 @@
     .cd-box span { display: block; font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 800; color: var(--gold-primary); line-height: 1; margin-bottom: 2px; }
     .cd-box p { font-size: 11px; color: #fff; margin: 0; font-weight: 600; }
 
-    /* Auto UI default madhye HIDE thevla ahe (display: none;) */
+    /* ========================================================== */
+    /* MASSIVE AUTO UI CONTAINER - Timer Samplyavar Disel         */
+    /* ========================================================== */
     .auto-ui-container { 
       display: none; /* Initially Hidden */
       width: 100%; margin: 0 auto 30px auto; position: relative; 
-      border: 1px solid var(--gold-primary); border-radius: 12px; 
-      background: linear-gradient(90deg, #1a1500 0%, #0d0a00 50%, #050505 100%); 
-      padding: 25px 20px; box-shadow: 0 4px 15px rgba(251, 197, 49, 0.1); 
+      border: 2.5px solid var(--gold-primary); border-radius: 20px; 
+      background: linear-gradient(135deg, #221c00 0%, #110e00 50%, #050505 100%); 
+      padding: 30px 25px; box-shadow: 0 12px 35px rgba(251, 197, 49, 0.3); 
       animation: fadeIn 1s ease-in-out;
     }
     
@@ -116,45 +118,46 @@
         to { opacity: 1; transform: translateY(0); }
     }
     
-    .header-wrap { text-align: center; margin-bottom: 25px; }
+    .header-wrap { text-align: center; margin-bottom: 25px; border-bottom: 1.5px dashed rgba(251, 197, 49, 0.4); padding-bottom: 16px; }
     .trishul-line { display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
-    .trishul-line::before, .trishul-line::after { content: ''; width: 60px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold-glow)); }
+    .trishul-line::before, .trishul-line::after { content: ''; width: 80px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold-glow)); }
     .trishul-line::after { background: linear-gradient(-90deg, transparent, var(--gold-glow)); }
-    .trishul-icon { width: 25px; height: 25px; fill: var(--gold-glow); filter: drop-shadow(0 0 5px var(--gold-glow)); margin: 0 10px; }
+    .trishul-icon { width: 35px; height: 35px; fill: var(--gold-glow); filter: drop-shadow(0 0 5px var(--gold-glow)); margin: 0 10px; }
 
+    /* Main Title 34px */
     .main-title-neon {
-        font-family: 'Mukta', sans-serif; font-weight: 800; font-size: clamp(24px, 6vw, 30px);
-        color: var(--gold-primary); letter-spacing: 1px; position: relative; display: inline-block;
-        text-shadow: 0 0 10px rgba(251, 197, 49, 0.2); z-index: 2;
-    }
-    .main-title-neon::before {
-        content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        width: 100%; height: 100%; background: radial-gradient(ellipse at center, rgba(255,150,0,0.3) 0%, transparent 70%);
-        z-index: -1; filter: blur(8px);
+        font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 34px;
+        color: var(--gold-primary); letter-spacing: 1.5px; position: relative; display: inline-block;
+        text-shadow: 0 0 15px rgba(251, 197, 49, 0.5); z-index: 2;
     }
 
-    .boxes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .boxes-grid { 
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; 
+        padding-bottom: 10px; 
+    }
 
+    /* Massive Boxes Desktop (min-height 220px) */
     .neon-box {
-        background: #0a0a0a; border-radius: 12px; height: 135px; padding: 10px 2px;
+        background: rgba(251, 197, 49, 0.12); border-radius: 18px; min-height: 220px; padding: 25px 10px;
         display: flex; flex-direction: column; align-items: center; justify-content: center;
-        position: relative; z-index: 1; box-sizing: border-box;
+        position: relative; z-index: 1; box-sizing: border-box; text-align: center;
     }
 
-    .box-yellow { border: 1.5px solid var(--gold-glow); box-shadow: 0 0 10px rgba(255,193,7,0.2), inset 0 0 8px rgba(255,193,7,0.15); }
-    .box-blue { border: 1.5px solid var(--blue-glow); box-shadow: 0 0 10px rgba(0,210,255,0.2), inset 0 0 8px rgba(0,210,255,0.15); }
-    .box-dynamic { border: 1.5px solid var(--dynamic-color); box-shadow: 0 0 10px var(--dynamic-color), inset 0 0 8px var(--dynamic-color); transition: all 0.5s ease; }
+    .box-yellow { border: 2.5px solid rgba(251, 197, 49, 0.7); box-shadow: 0 0 15px rgba(255,193,7,0.3); }
+    .box-blue { border: 2.5px solid rgba(251, 197, 49, 0.7); box-shadow: 0 0 15px rgba(0,210,255,0.3); }
+    .box-dynamic { border: 2.5px solid var(--dynamic-color); box-shadow: 0 0 20px var(--dynamic-color); transition: all 0.5s ease; }
 
-    .icon-container { height: 32px; display: flex; justify-content: center; align-items: center; margin-bottom: 6px; }
-    .svg-icon { width: 32px; height: 32px; }
+    /* Icons and Sphere sizes scaled up */
+    .icon-container { height: 90px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px; }
+    .svg-icon { width: 60px; height: 60px; }
     
     .dynamic-sphere {
-        width: 30px; height: 30px; border-radius: 50%;
-        background: var(--sphere-bg); border: 1.5px solid rgba(255,255,255,0.5);
-        box-shadow: 0 0 12px var(--dynamic-color); transition: all 0.5s ease;
+        width: 90px; height: 90px; border-radius: 50%;
+        background: var(--sphere-bg); border: 4px solid #ffffff;
+        box-shadow: 0 0 25px var(--dynamic-color); transition: all 0.5s ease;
     }
 
-    .brush-bg { position: relative; width: 90%; padding: 2px 0; text-align: center; margin-bottom: 6px; }
+    .brush-bg { position: relative; width: 95%; padding: 6px 15px; text-align: center; margin-bottom: 10px; }
     .brush-bg::before {
         content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
         border-radius: 20px 5px 20px 5px / 5px 20px 5px 20px; z-index: -1; opacity: 0.9;
@@ -163,19 +166,28 @@
     .bg-blue::before { background: linear-gradient(90deg, #005a80, #00d2ff, #005a80); }
     .bg-dynamic::before { background: var(--dynamic-brush); transition: background 0.5s ease; }
 
-    .brush-text { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 14px; color: black; line-height: 1; }
-    .brush-subtext { font-family: 'Mukta', sans-serif; font-size: 11px; font-weight: 700; line-height: 1; color: white; text-shadow: 1px 1px 2px black; }
-    .bottom-title { font-family: 'Mukta', sans-serif; font-size: clamp(11px, 3.5vw, 13px); font-weight: 800; color: white; margin-bottom: 6px; line-height: 1.1; text-align: center; white-space: nowrap; }
+    /* Massive Text Classes for Desktop */
+    .brush-text { font-family: 'Poppins', sans-serif; font-size: 65px; font-weight: 800; color: black; line-height: 1.1; display: block; text-shadow: none; }
+    .brush-subtext { font-family: 'Mukta', sans-serif; font-size: 40px; font-weight: 700; line-height: 1.1; color: white; text-shadow: 1px 1px 3px black; display: block; text-transform: uppercase;}
+    
+    .bottom-title { font-family: 'Mukta', sans-serif; font-size: 40px; font-weight: 800; color: white; margin-bottom: 8px; line-height: 1.1; text-align: center; white-space: normal; word-break: keep-all; }
+    
+    /* Specific overrides for names */
+    #ui-devi-name { font-size: 50px; text-shadow: 0 0 12px rgba(255,255,255,0.5); }
+    #ui-color-name { font-size: 40px; color: var(--dynamic-color); text-shadow: 0 0 15px var(--dynamic-color); }
 
-    .lotus-line { display: flex; align-items: center; width: 85%; opacity: 0.8; }
-    .lotus-line::before, .lotus-line::after { content: ''; flex: 1; height: 1px; }
+    .lotus-line { display: flex; align-items: center; width: 85%; opacity: 0.8; margin-top: auto; }
+    .lotus-line::before, .lotus-line::after { content: ''; flex: 1; height: 1.5px; }
     .lotus-yellow::before, .lotus-yellow::after { background: var(--gold-glow); }
     .lotus-blue::before, .lotus-blue::after { background: var(--blue-glow); }
     .lotus-dynamic::before, .lotus-dynamic::after { background: var(--dynamic-color); }
     
-    .lotus-svg { width: 12px; height: 12px; margin: 0 4px; }
+    .lotus-svg { width: 16px; height: 16px; margin: 0 4px; }
     .lotus-dynamic-svg { fill: var(--dynamic-color); }
 
+    /* ========================================================== */
+    /* Mobile Responsiveness                                      */
+    /* ========================================================== */
     .grid-3x3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
     .year-card-link { text-decoration: none; display: block; }
 
@@ -187,22 +199,10 @@
     }
     .year-card-link:hover .year-card { transform: translateY(-4px); }
 
-    .year-title { 
-      font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 800; font-style: italic; 
-      color: #fff; position: relative; display: inline-block; margin-bottom: 15px; line-height: 1; 
-      text-shadow: 2px 4px 10px rgba(0,0,0,0.9); z-index: 2; 
-    }
-    .year-title::after { 
-      content: ""; position: absolute; bottom: 3px; left: -10%; width: 120%; height: 6px; 
-      border-radius: 50%; transform: rotate(-5deg); z-index: -1; filter: blur(2px); 
-    }
+    .year-title { font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 800; font-style: italic; color: #fff; position: relative; display: inline-block; margin-bottom: 15px; line-height: 1; text-shadow: 2px 4px 10px rgba(0,0,0,0.9); z-index: 2; }
+    .year-title::after { content: ""; position: absolute; bottom: 3px; left: -10%; width: 120%; height: 6px; border-radius: 50%; transform: rotate(-5deg); z-index: -1; filter: blur(2px); }
 
-    .card-btn { 
-      align-self: flex-start; display: inline-flex; align-items: center; justify-content: space-between; 
-      padding: 5px 5px 5px 14px; background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255,255,255,0.3); 
-      border-radius: 30px; color: #fff; font-size: 13px; text-decoration: none; min-width: 140px; 
-      font-weight: 600; transition: 0.3s; pointer-events: none; z-index: 2;
-    }
+    .card-btn { align-self: flex-start; display: inline-flex; align-items: center; justify-content: space-between; padding: 5px 5px 5px 14px; background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; color: #fff; font-size: 13px; text-decoration: none; min-width: 140px; font-weight: 600; transition: 0.3s; pointer-events: none; z-index: 2; }
     .card-btn-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; text-shadow: none; }
 
     .c26 { border-color: var(--c-2026); } .c26 .year-title::after { background: var(--c-2026); } .c26 .card-btn-icon { background: var(--c-2026); color: #fff; } .year-card-link:hover .c26 { box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); }
@@ -274,20 +274,21 @@
     .copy-link { background: rgba(251, 197, 49, 0.1); color: var(--gold-primary); text-decoration: none; padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1px solid rgba(251, 197, 49, 0.3); transition: 0.3s; }
     .copy-link:hover { background: var(--gold-primary); color: #000; }
 
+    /* ONLY keeping layout/spacing adjustments for mobile, NO font shrinking */
     @media (max-width: 992px) {
       .grid-3x3 { grid-template-columns: 1fr; }
       .dashboard-container { grid-template-columns: 1fr; gap: 15px; }
       .reg-number { font-size: 11px; margin-right: 12px; }
-      .banner-2026 { flex-direction: column; text-align: center; justify-content: center; padding: 25px 15px; }
+      .banner-2026 { flex-direction: column; text-align: center; justify-content: center; padding: 15px; gap: 12px; }
       .countdown-container { margin-top: 10px; }
       .menu-toggle { display: block; }
       .nav-links { position: absolute; top: 50px; left: 0; width: 100%; background: rgba(5, 5, 5, 0.98); flex-direction: column; text-align: center; gap: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; border-bottom: 1px solid var(--card-border); }
       .nav-links.active { max-height: 300px; }
       .nav-links li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-      .auto-ui-container { padding: 20px 10px; margin-bottom: 25px; }
-      .boxes-grid { gap: 4px; }
-      .neon-box { height: 125px; padding: 8px 1px; }
-      .bottom-title { font-size: 10px; }
+      
+      /* Important: Auto-ui container ani boxes-grid sathi shrinking kadhun takli aahe */
+      .auto-ui-container { padding: 25px 10px; margin-bottom: 25px; }
+      .boxes-grid { gap: 15px; overflow-x: auto; padding-bottom: 15px; }
     }
   </style>
 </head>
@@ -330,7 +331,7 @@
       </div>
     </div>
 
-    <!-- नवीन ऑटोमॅटिक UI (Initially Hidden via CSS display: none;) -->
+    <!-- नवीन ऑटोमॅटिक UI (Massive Text Version) -->
     <div class="auto-ui-container" id="auto-ui-section">
         <div class="header-wrap">
             <div class="trishul-line">
@@ -340,6 +341,7 @@
         </div>
 
         <div class="boxes-grid">
+            <!-- Box 1 -->
             <div class="neon-box box-yellow">
                 <div class="icon-container">
                     <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--gold-glow)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -352,6 +354,7 @@
                 <div class="lotus-line lotus-yellow"><svg class="lotus-svg" fill="var(--gold-glow)" viewBox="0 0 24 24"><path d="M12 2s-3 6-3 10c0 4 3 10 3 10s3-6 3-10c0-4-3-10-3-10zm-3 8c-3-2-7-2-7-2s1 6 5 8c2-3 2-6 2-6zm6 0c3-2 7-2 7-2s-1 6-5 8c-2-3-2-6-2-6z"/></svg></div>
             </div>
 
+            <!-- Box 2 -->
             <div class="neon-box box-blue">
                 <div class="icon-container">
                     <svg class="svg-icon" viewBox="0 0 100 100" fill="none" stroke="var(--gold-glow)" stroke-width="2">
@@ -365,6 +368,7 @@
                 <div class="lotus-line lotus-blue"><svg class="lotus-svg" fill="var(--blue-glow)" viewBox="0 0 24 24"><path d="M12 2s-3 6-3 10c0 4 3 10 3 10s3-6 3-10c0-4-3-10-3-10zm-3 8c-3-2-7-2-7-2s1 6 5 8c2-3 2-6 2-6zm6 0c3-2 7-2 7-2s-1 6-5 8c-2-3-2-6-2-6z"/></svg></div>
             </div>
 
+            <!-- Box 3 -->
             <div class="neon-box box-dynamic">
                 <div class="icon-container">
                     <div class="dynamic-sphere"></div>
@@ -608,7 +612,6 @@
 
     // ==========================================
     // Original Time: 11 October 2026, 12:00 AM
-    // Jar test karaycha asel tar he date "Oct 01, 2026" karun paha.
     // ==========================================
     const navratriDate = new Date("Oct 11, 2026 00:00:00").getTime();
 
