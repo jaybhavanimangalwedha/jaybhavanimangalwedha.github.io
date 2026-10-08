@@ -521,17 +521,21 @@
           <div style="color: #ccc; font-size: 14px; text-align: center;">नवीन अपडेट्स लोड होत आहेत...</div>
         </div>
         
-        <script>
+                <script>
           fetch('notices.json')
           .then(response => response.json())
           .then(data => {
               let noticeHtml = '';
               data.forEach(notice => {
+                  let parts = notice.split(" ");
+                  let datePart = parts.slice(0, 3).join(" "); 
+                  let textPart = parts.slice(3).join(" ");  
+
                   noticeHtml += `
-                  <div class="update-item" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;">
-                    <div class="update-text" style="display: flex; gap: 10px; align-items: flex-start;">
-                      <span style="color: #fbc531; font-size: 16px; margin-top: 2px;">👉</span>
-                      <span class="update-title" style="color: #fff; font-size: 15px; font-weight: 600; line-height: 1.4;">${notice}</span>
+                  <div class="update-item" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; margin-bottom: 10px;">
+                    <div class="update-text" style="display: flex; flex-direction: column; gap: 4px;">
+                      <span style="color: #fbe08d; font-size: 12px; font-weight: 600; opacity: 0.9;">${datePart}</span>
+                      <span style="color: #ffffff; font-size: 15px; font-weight: 600; line-height: 1.4;">${textPart}</span>
                     </div>
                   </div>`;
               });
@@ -542,6 +546,7 @@
               document.getElementById('live-notices').innerHTML = '<div style="color: #aaa; font-size: 14px;">सध्या कोणतीही नवीन सूचना नाही.</div>';
           });
         </script>
+
       </div>
 
       <!-- Donation -->
