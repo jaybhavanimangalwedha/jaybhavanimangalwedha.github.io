@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>२०१८ - उत्सव गॅलरी</title>
+  <title>२०१७ - उत्सव गॅलरी</title>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -19,8 +19,6 @@
       font-family: 'Mukta', sans-serif;
       margin: 0; padding: 0;
     }
-
-    /* Top Bar */
     .header {
       background: rgba(5, 5, 5, 0.95);
       padding: 15px 20px;
@@ -48,17 +46,17 @@
       margin: 20px 0;
     }
     .page-title span { font-size: 15px; color: #aaa; display: block; font-weight: 600; margin-top: 5px;}
-
-    /* Gallery Grid */
+    .page-title .subtitle-extra { color: var(--gold-primary); font-size: 16px; margin-top: 5px; }
+    
     .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
+    
     .grid { 
       display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
       gap: 15px; 
       margin-bottom: 30px; 
       align-items: start; 
     }
-
     .photo-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -68,18 +66,19 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
       cursor: pointer;
       transition: 0.3s;
+      display: flex;
+      flex-direction: column;
     }
     .photo-card:hover { border-color: rgba(251, 197, 49, 0.5); transform: translateY(-3px); }
-
     .photo-card img {
       width: 100%;
-      height: auto; 
+      height: 120px; 
+      object-fit: cover;
       display: block;
       border-bottom: 1px solid var(--card-border);
     }
-
-    .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); }
-
+    .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); min-height: 20px;}
+    
     .section-divider {
       display: flex; align-items: center; text-align: center; color: var(--gold-primary); margin: 30px 0 20px;
     }
@@ -87,8 +86,7 @@
       content: ''; flex: 1; border-bottom: 1px solid var(--card-border);
     }
     .section-divider span { padding: 0 15px; font-size: 18px; font-weight: 800; }
-
-    /* Full Screen Pop-up */
+    
     .modal {
       display: none; 
       position: fixed; 
@@ -125,65 +123,78 @@
   </div>
 
   <div class="container">
-    <h1 class="page-title">२०१८ उत्सव गॅलरी <span>श्री जय भवानी नवरात्र महोत्सव मंडळ</span></h1>
+    <h1 class="page-title">
+      २०१७ उत्सव गॅलरी 
+      <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span>
+      <span class="subtitle-extra">जय भवानी प्रसन्न</span>
+    </h1>
 
-    <!-- 11 Days Photos -->
-    <div class="section-divider"><span>११ दिवसांचे फोटो</span></div>
+    <!-- 10 Days Photos -->
+    <div class="section-divider"><span>१० दिवसांचे फोटो</span></div>
     <div class="grid">
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day1.jpg" alt="Day 1" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+1'">
+        <img src="2017/2017day1.jpg" alt="Day 1" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">पहिला दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day2.jpg" alt="Day 2" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+2'">
+        <img src="2017/2017day2.jpg" alt="Day 2" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">दुसरा दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day3.jpg" alt="Day 3" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+3'">
+        <img src="2017/2017day3.jpg" alt="Day 3" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">तिसरा दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day4.jpg" alt="Day 4" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+4'">
+        <img src="2017/2017day4.jpg" alt="Day 4" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">चौथा दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day5.jpg" alt="Day 5" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+5'">
+        <img src="2017/2017day5.jpg" alt="Day 5" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">पाचवा दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day6.jpg" alt="Day 6" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+6'">
+        <img src="2017/2017day6.jpg" alt="Day 6" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">सहावा दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day7.jpg" alt="Day 7" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+7'">
+        <img src="2017/2017day7.jpg" alt="Day 7" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">सातवा दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day8.jpg" alt="Day 8" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+8'">
+        <img src="2017/2017day8.jpg" alt="Day 8" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">आठवा दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day9.jpg" alt="Day 9" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+9'">
+        <img src="2017/2017day9.jpg" alt="Day 9" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">नववा दिवस</div>
       </div>
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day10.jpg" alt="Day 10" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+10'">
+        <img src="2017/2017day10.jpg" alt="Day 10" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
         <div class="photo-title">दहावा दिवस</div>
-      </div>
-      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018day11.jpg" alt="Day 11" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Day+11'">
-        <div class="photo-title">अकरावा दिवस</div>
       </div>
     </div>
 
-    <!-- Other Photos (इतर) -->
-    <div class="section-divider"><span>इतर फोटो</span></div>
+    <!-- इतर फोटो -->
+    <div class="section-divider"><span>इतर</span></div>
     <div class="grid">
       <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-        <img src="2018Mandap1.jpg" alt="Mandap" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=Mandap'">
-        <div class="photo-title">मंडप सजावट</div>
+        <img src="2017/2017sajavat.jpg" alt="सजावट" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
+        <div class="photo-title">सजावट</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017shringar.jpg" alt="देवीचा श्रृंगार" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
+        <div class="photo-title">देवीचा श्रृंगार</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017vishesh.jpg" alt="विशेष क्षण" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
+        <div class="photo-title">विशेष क्षण</div>
+      </div>
+      <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+        <img src="2017/2017aarti.jpg" alt="महाआरती" onerror="this.src='https://via.placeholder.com/150/111/fbc531?text=%20'">
+        <div class="photo-title">महाआरती</div>
       </div>
     </div>
+
   </div>
 
   <!-- The Modal -->
@@ -197,7 +208,6 @@
       document.getElementById("imageModal").style.display = "block";
       document.getElementById("fullImage").src = src;
     }
-
     function closeFullImg() {
       document.getElementById("imageModal").style.display = "none";
     }
