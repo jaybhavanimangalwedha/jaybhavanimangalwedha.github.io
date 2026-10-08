@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageHeaderTitle">उत्सव गॅलरी</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --gold-primary: #fbc531;
+      --card-bg: #111111;
+      --card-border: rgba(251, 197, 49, 0.2);
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: #fff;
+      font-family: 'Mukta', sans-serif;
+      margin: 0; padding: 0;
+    }
+    .header {
+      background: rgba(5, 5, 5, 0.95);
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .back-btn {
+      color: var(--gold-primary);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .page-title {
+      text-align: center;
+      color: var(--gold-primary);
+      font-size: 24px;
+      font-weight: 800;
+      margin: 20px 0;
+    }
+    .page-title span { font-size: 15px; color: #aaa; display: block; font-weight: 600; margin-top: 5px;}
+    .page-title .subtitle-extra { color: var(--gold-primary); font-size: 16px; margin-top: 5px; }
+    
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
+    
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+      gap: 15px; 
+      margin-bottom: 30px; 
+      align-items: start; 
+    }
+    .photo-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .photo-card:hover { border-color: rgba(251, 197, 49, 0.5); transform: translateY(-3px); }
+    .photo-card img {
+      width: 100%;
+      height: 120px; 
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); min-height: 20px;}
+    
+    .section-divider {
+      display: flex; align-items: center; text-align: center; color: var(--gold-primary); margin: 30px 0 20px;
+    }
+    .section-divider::before, .section-divider::after {
+      content: ''; flex: 1; border-bottom: 1px solid var(--card-border);
+    }
+    .section-divider span { padding: 0 15px; font-size: 18px; font-weight: 800; }
+    
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      padding-top: 50px; 
+      left: 0; top: 0; 
+      width: 100%; height: 100%; 
+      background-color: rgba(0,0,0,0.95);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 95%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 5px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #fff;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-btn:hover { color: var(--gold-primary); }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> मागे जा</a>
+  </div>
+
+  <div class="container">
+    <h1 class="page-title" id="mainTitle">
+      उत्सव गॅलरी 
+      <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span>
+      <span class="subtitle-extra">जय भवानी प्रसन्न</span>
+    </h1>
+
+    <!-- 10 Days Photos -->
+    <div class="section-divider"><span>१० दिवसांचे फोटो</span></div>
+    <div class="grid" id="daysGrid"></div>
+
+    <!-- इतर फोटो -->
+    <div class="section-divider"><span>इतर</span></div>
+    <div class="grid" id="otherGrid"></div>
+
+  </div>
+
+  <!-- The Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close-btn" onclick="closeFullImg()">&times;</span>
+    <img class="modal-content" id="fullImage">
+  </div>
+
+  <script>
+    // URL मधून वर्ष शोधणे (उदा. gallery.html?year=2018 असेल तर 2018 पकडेल)
+    const urlParams = new URLSearchParams(window.location.search);
+    const year = urlParams.get('year') || '2017';
+
+    // टायटल बदलणे
+    document.getElementById('pageHeaderTitle').innerText = year + ' - उत्सव गॅलरी';
+    document.getElementById('mainTitle.innerHTML', year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>');
+    
+    // सुरक्षित बेस६4 पारदर्शक इमेज (ब्लिंक न होण्यासाठी)
+    const fallbackImg = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+    // १० दिवसांची नावे
+    const dayNames = [
+      "पहिला दिवस", "दुसरा दिवस", "तिसरा दिवस", "चौथा दिवस", "पाचवा दिवस", 
+      "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस"
+    ];
+
+    let daysHtml = '';
+    for (let i = 1; i <= 10; i++) {
+      let imgSrc = `${year}/${year}day${i}.jpg`;
+      daysHtml += `
+        <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+          <img src="${imgSrc}" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <div class="photo-title">${dayNames[i-1]}</div>
+        </div>
+      `;
+    }
+    document.getElementById('daysGrid').innerHTML = daysHtml;
+
+    // इतर फोटोंची नावे आणि फाईल्स
+    const otherItems = [
+      { file: 'sajavat.jpg', title: 'सजावट' },
+      { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
+      { file: 'vishesh.jpg', title: 'विशेष क्षण' },
+      { file: 'aarti.jpg', title: 'महाआरती' }
+    ];
+
+    let otherHtml = '';
+    otherItems.forEach(item => {
+      let imgSrc = `${year}/${year}${item.file}`;
+      otherHtml += `
+        <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+          <img src="${imgSrc}" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <div class="photo-title">${item.title}</div>
+        </div>
+      `;
+    });
+    document.getElementById('otherGrid').innerHTML = otherHtml;
+
+    // Modal Functions
+    function openFullImg(src) {
+      document.getElementById("imageModal").style.display = "block";
+      document.getElementById("fullImage").src = src;
+    }
+    function closeFullImg() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
