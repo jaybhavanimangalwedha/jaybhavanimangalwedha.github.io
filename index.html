@@ -41,7 +41,7 @@
       --c-2019: #00d2d3; 
       --c-2018: #ff007f; 
       --c-2017: #f1c40f; 
-      
+
       --gold-glow: #ffc107;
       --blue-glow: #00d2ff;
       --dynamic-color: #ff6600; 
@@ -83,72 +83,34 @@
     .section-title { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 28px; color: var(--gold-primary); text-align: center; margin-bottom: 30px; letter-spacing: 1px; }
     .section-title::after { content: ""; display: block; width: 50px; height: 3px; background: var(--gold-primary); margin: 8px auto 0; border-radius: 2px; }
 
-    /* Default Banner Design */
+    /* Updated Banner Design Without Timer */
     .banner-2026 { 
       margin-bottom: 25px; border: 1px solid var(--gold-primary); border-radius: 12px; 
       background: linear-gradient(90deg, #1a1500 0%, #0d0a00 50%, #050505 100%); 
-      display: flex; align-items: center; justify-content: space-between; 
-      padding: 20px 30px; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(251, 197, 49, 0.1); 
+      display: flex; align-items: center; justify-content: center; 
+      padding: 12px 15px; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(251, 197, 49, 0.1); 
       flex-wrap: wrap; gap: 15px; transition: all 0.5s ease;
     }
-    
-    .b-year-section { display: flex; flex-direction: column; transition: all 0.5s ease; }
-    .b-year { font-family: 'Poppins', sans-serif; font-size: 45px; font-weight: 800; color: var(--gold-primary); line-height: 0.9; }
-    .b-coming { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 24px; color: var(--text-white); margin-top: 5px; letter-spacing: 1px; }
 
-    .countdown-container { display: flex; gap: 10px; z-index: 2; transition: opacity 0.5s ease; }
-    .cd-box { 
-      background: rgba(251, 197, 49, 0.1); border: 1px solid rgba(251, 197, 49, 0.3); 
-      border-radius: 8px; padding: 8px 12px; text-align: center; min-width: 65px;
-    }
-    .cd-box span { display: block; font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 800; color: var(--gold-primary); line-height: 1; margin-bottom: 2px; }
-    .cd-box p { font-size: 11px; color: #fff; margin: 0; font-weight: 600; }
+    .b-year-section { display: flex; flex-direction: row; align-items: center; gap: 10px; transition: all 0.5s ease; }
+    .b-year { font-family: 'Poppins', sans-serif; font-size: 34px; font-weight: 800; color: var(--gold-primary); line-height: 0.9; }
+    .b-coming { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 26px; color: var(--text-white); margin-top: 0; letter-spacing: 1px; }
 
     /* ========================================================== */
-    /* AUTO UI CONTAINER WITH BLUR EFFECT                         */
+    /* AUTO UI CONTAINER (Blur removed)                           */
     /* ========================================================== */
     .auto-ui-container { 
       width: 100%; margin: 0 auto 30px auto; position: relative; 
       border: 1px solid var(--gold-primary); border-radius: 12px; 
       background: linear-gradient(90deg, #1a1500 0%, #0d0a00 50%, #050505 100%); 
       box-shadow: 0 4px 15px rgba(251, 197, 49, 0.1); 
-      overflow: hidden; /* सस्पेन्स ओव्हरले कंटेनरच्या बाहेर जाऊ नये म्हणून */
+      overflow: hidden;
     }
 
-    /* मुख्य आतला भाग जो सुरुवातीला ब्लर राहील */
     .auto-ui-content {
       padding: 25px 20px;
-      transition: filter 1.5s ease, opacity 1.5s ease;
     }
 
-    /* ब्लर क्लास - हा टायमर संपल्यावर JS मधून काढला जाईल */
-    .is-blurred {
-      filter: blur(10px);
-      opacity: 0.3;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /* "येत आहे लवकरच...." चा ओव्हरले */
-    .ui-overlay {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      display: flex; justify-content: center; align-items: center;
-      z-index: 10; background: rgba(5, 5, 5, 0.2);
-      transition: opacity 1.5s ease;
-    }
-
-    .ui-overlay-text {
-      font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 26px;
-      color: var(--gold-primary); text-shadow: 0 0 15px rgba(251, 197, 49, 0.9);
-      letter-spacing: 2px; text-align: center;
-      animation: pulse 1.2s infinite alternate;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.8; }
-      100% { transform: scale(1.08); opacity: 1; text-shadow: 0 0 25px var(--gold-primary); }
-    }
-    
     .header-wrap { text-align: center; margin-bottom: 25px; }
     .trishul-line { display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
     .trishul-line::before, .trishul-line::after { content: ''; width: 60px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold-glow)); }
@@ -180,7 +142,7 @@
 
     .icon-container { height: 32px; display: flex; justify-content: center; align-items: center; margin-bottom: 6px; }
     .svg-icon { width: 32px; height: 32px; }
-    
+
     .dynamic-sphere {
         width: 32px; height: 32px; border-radius: 50%;
         background: var(--sphere-bg); border: 1.5px solid rgba(255,255,255,0.5);
@@ -205,7 +167,7 @@
     .lotus-yellow::before, .lotus-yellow::after { background: var(--gold-glow); }
     .lotus-blue::before, .lotus-blue::after { background: var(--blue-glow); }
     .lotus-dynamic::before, .lotus-dynamic::after { background: var(--dynamic-color); }
-    
+
     .lotus-svg { width: 12px; height: 12px; margin: 0 4px; }
     .lotus-dynamic-svg { fill: var(--dynamic-color); }
 
@@ -229,16 +191,17 @@
     .card-btn { align-self: flex-start; display: inline-flex; align-items: center; justify-content: space-between; padding: 5px 5px 5px 14px; background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; color: #fff; font-size: 13px; text-decoration: none; min-width: 140px; font-weight: 600; transition: 0.3s; pointer-events: none; z-index: 2; }
     .card-btn-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; text-shadow: none; }
 
-    .c26 { border-color: var(--c-2026); } .c26 .year-title::after { background: var(--c-2026); } .c26 .card-btn-icon { background: var(--c-2026); color: #fff; } .year-card-link:hover .c26 { box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); }
-    .c25 { border-color: var(--c-2025); } .c25 .year-title::after { background: var(--c-2025); } .c25 .card-btn-icon { background: var(--c-2025); color: #000; } .year-card-link:hover .c25 { box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
-    .c24 { border-color: var(--c-2024); } .c24 .year-title::after { background: var(--c-2024); } .c24 .card-btn-icon { background: var(--c-2024); color: #000; } .year-card-link:hover .c24 { box-shadow: 0 5px 15px rgba(0, 206, 201, 0.3); }
-    .c23 { border-color: var(--c-2023); } .c23 .year-title::after { background: var(--c-2023); } .c23 .card-btn-icon { background: var(--c-2023); } .year-card-link:hover .c23 { box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3); }
-    .c22 { border-color: var(--c-2022); } .c22 .year-title::after { background: var(--c-2022); } .c22 .card-btn-icon { background: var(--c-2022); } .year-card-link:hover .c22 { box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3); }
-    .c21 { border-color: var(--c-2021); } .c21 .year-title::after { background: var(--c-2021); } .c21 .card-btn-icon { background: var(--c-2021); } .year-card-link:hover .c21 { box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3); }
-    .c20 { border-color: var(--c-2020); } .c20 .year-title::after { background: var(--c-2020); } .c20 .card-btn-icon { background: var(--c-2020); } .year-card-link:hover .c20 { box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
-    .c19 { border-color: var(--c-2019); } .c19 .year-title::after { background: var(--c-2019); } .c19 .card-btn-icon { background: var(--c-2019); color: #000; } .year-card-link:hover .c19 { box-shadow: 0 5px 15px rgba(0, 210, 211, 0.3); }
+    /* --- YEAR CARDS BACKGROUND CSS UPDATE --- */
+    .c26 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2026/2026cover.jpg'); border-color: var(--c-2026); } .c26 .year-title::after { background: var(--c-2026); } .c26 .card-btn-icon { background: var(--c-2026); color: #fff; } .year-card-link:hover .c26 { box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); }
+    .c25 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2025/2025cover.jpg'); border-color: var(--c-2025); } .c25 .year-title::after { background: var(--c-2025); } .c25 .card-btn-icon { background: var(--c-2025); color: #000; } .year-card-link:hover .c25 { box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
+    .c24 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2024/2024cover.jpg'); border-color: var(--c-2024); } .c24 .year-title::after { background: var(--c-2024); } .c24 .card-btn-icon { background: var(--c-2024); color: #000; } .year-card-link:hover .c24 { box-shadow: 0 5px 15px rgba(0, 206, 201, 0.3); }
+    .c23 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2023/2023cover.jpg'); border-color: var(--c-2023); } .c23 .year-title::after { background: var(--c-2023); } .c23 .card-btn-icon { background: var(--c-2023); } .year-card-link:hover .c23 { box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3); }
+    .c22 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2022/2022cover.jpg'); border-color: var(--c-2022); } .c22 .year-title::after { background: var(--c-2022); } .c22 .card-btn-icon { background: var(--c-2022); } .year-card-link:hover .c22 { box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3); }
+    .c21 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2021/2021cover.jpg'); border-color: var(--c-2021); } .c21 .year-title::after { background: var(--c-2021); } .c21 .card-btn-icon { background: var(--c-2021); } .year-card-link:hover .c21 { box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3); }
+    .c20 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2020/2020cover.jpg'); border-color: var(--c-2020); } .c20 .year-title::after { background: var(--c-2020); } .c20 .card-btn-icon { background: var(--c-2020); } .year-card-link:hover .c20 { box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
+    .c19 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2019/2019cover.jpg'); border-color: var(--c-2019); } .c19 .year-title::after { background: var(--c-2019); } .c19 .card-btn-icon { background: var(--c-2019); color: #000; } .year-card-link:hover .c19 { box-shadow: 0 5px 15px rgba(0, 210, 211, 0.3); }
     .c18 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2018/2018cover.jpg'); border-color: var(--c-2018); } .c18 .year-title::after { background: var(--c-2018); } .c18 .card-btn-icon { background: var(--c-2018); color: #fff; } .year-card-link:hover .c18 { box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3); }
-    .c17 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('banner2017.png'); border-color: var(--c-2017); } .c17 .year-title::after { background: var(--c-2017); } .c17 .card-btn-icon { background: var(--c-2017); color: #000; } .year-card-link:hover .c17 { box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3); }
+    .c17 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2017/2017cover.jpg'); border-color: var(--c-2017); } .c17 .year-title::after { background: var(--c-2017); } .c17 .card-btn-icon { background: var(--c-2017); color: #000; } .year-card-link:hover .c17 { box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3); }
 
     .older-year { display: none; }
     .older-year.show-year { display: block; }
@@ -303,16 +266,14 @@
       .dashboard-container { grid-template-columns: 1fr; gap: 15px; }
       .reg-number { font-size: 11px; margin-right: 12px; }
       .banner-2026 { flex-direction: column; text-align: center; justify-content: center; padding: 25px 15px; }
-      .countdown-container { margin-top: 10px; }
       .menu-toggle { display: block; }
       .nav-links { position: absolute; top: 50px; left: 0; width: 100%; background: rgba(5, 5, 5, 0.98); flex-direction: column; text-align: center; gap: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; border-bottom: 1px solid var(--card-border); }
       .nav-links.active { max-height: 300px; }
       .nav-links li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-      
+
       .auto-ui-container { margin-bottom: 25px; }
       .auto-ui-content { padding: 20px 10px; }
-      .ui-overlay-text { font-size: 22px; }
-      
+
       @media (max-width: 360px) {
           .boxes-grid { gap: 4px; }
           .neon-box { height: 135px; padding: 8px 1px; }
@@ -352,25 +313,14 @@
         <div class="b-year" id="b-year-text">2026</div>
         <div class="b-coming" id="b-coming-text">नवरात्र उत्सव</div>
       </div>
-
-      <div class="countdown-container" id="timer-boxes">
-        <div class="cd-box"><span id="days">00</span><p>दिवस</p></div>
-        <div class="cd-box"><span id="hours">00</span><p>तास</p></div>
-        <div class="cd-box"><span id="minutes">00</span><p>मिनिटे</p></div>
-        <div class="cd-box"><span id="seconds">00</span><p>सेकंद</p></div>
-      </div>
+      <!-- Timer removed completely from here -->
     </div>
 
-    <!-- नवीन ऑटोमॅटिक UI (सुरुवातीला ब्लर आणि ओव्हरले असलेला) -->
+    <!-- नवीन ऑटोमॅटिक UI (ब्लर आणि ओव्हरले काढले आहेत) -->
     <div class="auto-ui-container" id="auto-ui-section">
-        
-        <!-- हा तो सस्पेन्स ओव्हरले (येत आहे लवकरच) -->
-        <div class="ui-overlay" id="ui-overlay">
-            <div class="ui-overlay-text">येत आहे लवकरच....</div>
-        </div>
 
-        <!-- हा तुमचा मुख्य कंटेनर जो सुरुवातीला ब्लर राहील -->
-        <div class="auto-ui-content is-blurred" id="auto-ui-content">
+        <!-- मुख्य कंटेनर आता सुरुवातीपासूनच स्पष्ट दिसेल -->
+        <div class="auto-ui-content" id="auto-ui-content">
             <div class="header-wrap">
                 <div class="trishul-line">
                     <svg class="trishul-icon" viewBox="0 0 24 24"><path d="M12 2L10 6H11V10C7 10 4 7 4 7V13C4 16 8 18 11 18.9V22H13V18.9C16 18 20 16 20 13V7C20 7 17 10 13 10V6H14L12 2ZM8 10.5C6.5 11.5 6 13 6 13C6 14.5 8 16 12 16C16 16 18 14.5 18 13C18 13 17.5 11.5 16 10.5C16 10.5 16 12 12 12C8 12 8 10.5 8 10.5Z"/></svg>
@@ -657,74 +607,6 @@
     checkUnlockStatus();
     setInterval(checkUnlockStatus, 1000);
 
-    // ==========================================
-    // ओरिजिनल वेळ: 11 October 2026, 12:00 AM 
-    // ==========================================
-    const navratriDate = new Date("Oct 11, 2026 00:00:00").getTime();
-
-    const countdownFunction = setInterval(function() {
-      const now = new Date().getTime();
-      const distance = navratriDate - now;
-
-      // जेव्हा टायमर 0 होईल
-      if (distance <= 0) {
-        clearInterval(countdownFunction);
-        
-        // 1. टायमर गायब करा 
-        const timerBox = document.getElementById("timer-boxes");
-        if(timerBox) {
-            timerBox.style.display = "none";
-        }
-        
-        // 2. Banner design 1 line madhye aana
-        const mainBanner = document.getElementById("main-banner-2026");
-        const bYearSection = document.getElementById("b-year-section");
-        const bYearText = document.getElementById("b-year-text");
-        const bComingText = document.getElementById("b-coming-text");
-
-        if(mainBanner && bYearSection) {
-            mainBanner.style.justifyContent = "center";
-            mainBanner.style.padding = "12px 15px"; 
-            
-            bYearSection.style.flexDirection = "row";
-            bYearSection.style.alignItems = "center";
-            bYearSection.style.gap = "10px";
-            
-            if(bYearText) bYearText.style.fontSize = "34px";
-            if(bComingText) {
-                bComingText.style.fontSize = "26px";
-                bComingText.style.marginTop = "0";
-            }
-        }
-
-        // 3. Auto UI चा ब्लर (Blur) इफेक्ट काढून टाका आणि ओव्हरले गायब करा
-        const uiContent = document.getElementById("auto-ui-content");
-        const uiOverlay = document.getElementById("ui-overlay");
-        
-        if(uiOverlay) {
-            uiOverlay.style.opacity = "0"; // Smooth fade out
-            setTimeout(() => { uiOverlay.style.display = "none"; }, 1500);
-        }
-        
-        if(uiContent) {
-            uiContent.classList.remove("is-blurred"); // Blur kadhun takla
-        }
-
-        return;
-      }
-
-      // नॉर्मल टायमर लॉजिक
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-      document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-      document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-      document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-    }, 1000);
-
     function shareWebsite() {
       if (navigator.share) {
         navigator.share({
@@ -761,7 +643,7 @@
         const currentDateKey = `${month}-${day}`; 
 
         let activeData = navratriSchedule[currentDateKey];
-        
+
         if(!activeData) {
             activeData = navratriSchedule["10-11"]; 
         }
