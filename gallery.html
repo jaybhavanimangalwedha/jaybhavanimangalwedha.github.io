@@ -47,9 +47,9 @@
     }
     .page-title span { font-size: 15px; color: #aaa; display: block; font-weight: 600; margin-top: 5px;}
     .page-title .subtitle-extra { color: var(--gold-primary); font-size: 16px; margin-top: 5px; }
-    
+
     .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
-    
+
     .grid { 
       display: grid; 
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
@@ -78,7 +78,7 @@
       border-bottom: 1px solid var(--card-border);
     }
     .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); min-height: 20px;}
-    
+
     .section-divider {
       display: flex; align-items: center; text-align: center; color: var(--gold-primary); margin: 30px 0 20px;
     }
@@ -86,7 +86,7 @@
       content: ''; flex: 1; border-bottom: 1px solid var(--card-border);
     }
     .section-divider span { padding: 0 15px; font-size: 18px; font-weight: 800; }
-    
+
     .modal {
       display: none; 
       position: fixed; 
@@ -153,7 +153,7 @@
     // ब्राउझर टायटल आणि हेडिंग बरोबर सेट करणे
     document.getElementById('pageHeaderTitle').innerText = year + ' - उत्सव गॅलरी';
     document.getElementById('mainTitle').innerHTML = year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>';
-    
+
     // सुरक्षित बेस६4 पारदर्शक इमेज (ब्लिंक न होण्यासाठी)
     const fallbackImg = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
@@ -175,9 +175,9 @@
     }
     document.getElementById('daysGrid').innerHTML = daysHtml;
 
-    // इतर फोटोंची नावे आणि फाईल्स
+    // इतर फोटोंची नावे आणि फाईल्स (येथे 'सजावट' च्या जागी '✨ मंदिर देखावा' केले आहे)
     const otherItems = [
-      { file: 'sajavat.jpg', title: 'सजावट' },
+      { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
       { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
       { file: 'vishesh.jpg', title: 'विशेष क्षण' },
       { file: 'aarti.jpg', title: 'महाआरती' }
