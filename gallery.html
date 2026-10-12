@@ -76,6 +76,7 @@
       object-fit: cover;
       display: block;
       border-bottom: 1px solid var(--card-border);
+      background-color: #111; /* लोडिंग दरम्यान काळा डबा दिसेल */
     }
     .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); min-height: 20px;}
 
@@ -142,7 +143,7 @@
   <!-- The Modal -->
   <div id="imageModal" class="modal">
     <span class="close-btn" onclick="closeFullImg()">&times;</span>
-    <img class="modal-content" id="fullImage">
+    <img class="modal-content" id="fullImage" loading="lazy" decoding="async">
   </div>
 
   <script>
@@ -168,7 +169,7 @@
       let imgSrc = `${year}/${year}day${i}.jpg`;
       daysHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${imgSrc}" loading="lazy" decoding="async" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
           <div class="photo-title">${dayNames[i-1]}</div>
         </div>
       `;
@@ -188,7 +189,7 @@
       let imgSrc = `${year}/${year}${item.file}`;
       otherHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
           <div class="photo-title">${item.title}</div>
         </div>
       `;
@@ -197,8 +198,10 @@
 
     // Modal Functions
     function openFullImg(src) {
-      document.getElementById("imageModal").style.display = "block";
-      document.getElementById("fullImage").src = src;
+      if (src !== fallbackImg) {
+        document.getElementById("imageModal").style.display = "block";
+        document.getElementById("fullImage").src = src;
+      }
     }
     function closeFullImg() {
       document.getElementById("imageModal").style.display = "none";
