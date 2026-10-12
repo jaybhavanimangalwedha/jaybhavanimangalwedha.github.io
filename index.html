@@ -97,7 +97,7 @@
     .b-coming { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 26px; color: var(--text-white); margin-top: 0; letter-spacing: 1px; }
 
     /* ========================================================== */
-    /* AUTO UI CONTAINER (Blur removed)                           */
+    /* AUTO UI CONTAINER */
     /* ========================================================== */
     .auto-ui-container { 
       width: 100%; margin: 0 auto 30px auto; position: relative; 
@@ -230,7 +230,7 @@
     .donation-actions { display: flex; flex-direction: column; gap: 10px; align-items: center; }
     .upi-logo { font-weight: 900; font-style: italic; font-size: 18px; letter-spacing: 1px; color: #fff;}
     .upi-logo span { color: var(--gold-primary); }
-    .btn-action { background: linear-gradient(90deg, #fbc531, #e1b12c); color: #000; border: none; padding: 6px 20px; border-radius: 20px; font-size: 14px; font-weight: 700; cursor: pointer; text-decoration: none; box-shadow: 0 2px 10px rgba(251, 197, 49, 0.2); transition: 0.3s; display: inline-block; text-align: center; }
+    .btn-action { background: linear-gradient(90deg, #fbc531, #e1b12c); color: #000; border: none; padding: 6px 20px; border-radius: 20px; font-size: 14px; font-weight: 700; cursor: pointer; text-decoration: none; box-shadow: 0 2px 10px rgba(251, 197, 49, 0.2); transition: 0.3s; display: inline-block; text-align: center; border: 1px solid transparent; }
     .btn-action:hover { box-shadow: 0 4px 15px rgba(251, 197, 49, 0.4); transform: translateY(-2px); }
 
     .aarti-card { display: flex; flex-direction: column; }
@@ -260,6 +260,12 @@
     .copy-eng { color: #888; font-size: 12px; letter-spacing: 0.5px; margin-bottom: 5px; }
     .copy-link { background: rgba(251, 197, 49, 0.1); color: var(--gold-primary); text-decoration: none; padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1px solid rgba(251, 197, 49, 0.3); transition: 0.3s; }
     .copy-link:hover { background: var(--gold-primary); color: #000; }
+
+    /* लेझर ॲनिमेशन CSS */
+    @keyframes scanLaser {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
 
     @media (max-width: 992px) {
       .grid-3x3 { grid-template-columns: 1fr; }
@@ -313,13 +319,10 @@
         <div class="b-year" id="b-year-text">2026</div>
         <div class="b-coming" id="b-coming-text">नवरात्र उत्सव</div>
       </div>
-      <!-- Timer removed completely from here -->
     </div>
 
     <!-- नवीन ऑटोमॅटिक UI (ब्लर आणि ओव्हरले काढले आहेत) -->
     <div class="auto-ui-container" id="auto-ui-section">
-
-        <!-- मुख्य कंटेनर आता सुरुवातीपासूनच स्पष्ट दिसेल -->
         <div class="auto-ui-content" id="auto-ui-content">
             <div class="header-wrap">
                 <div class="trishul-line">
@@ -370,17 +373,12 @@
     <div style="text-align: center; margin-bottom: 25px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">॥ आजचे विशेष क्षण ॥</h3>
       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;">
-        <!-- Photo 1 -->
         <img src="today_special_1.jpg" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
-        <!-- Photo 2 -->
         <img src="today_special_2.jpg" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
       </div>
     </div>
 
-    <!-- नवीन इमेज सेक्शन (special-photo.jpg) -->
-    <div style="text-align: center; margin-bottom: 25px;">
-      <img src="special-photo.jpg" onerror="this.style.display='none'" style="width: 100%; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
-    </div>
+    <!-- special-photo.jpg इथून काढून टाकली आहे -->
 
     <!-- वासापूजन 2026 सेक्शन -->
     <div style="text-align: center; margin-top: 15px; margin-bottom: 35px;">
@@ -389,7 +387,6 @@
     </div>
 
     <div class="grid-3x3">
-      <!-- 2026 Card with Auto Unlock Script -->
       <a href="gallery.html?year=2026" id="card2026" class="year-card-link" onclick="checkUnlock(event)">
         <div class="year-card c26">
           <div id="comingSoonText" style="position: absolute; top: 15px; right: 15px; font-size: 15px; color: var(--gold-primary); font-weight: 800; font-style: italic; filter: blur(1px); letter-spacing: 1px; transition: 0.3s;">Coming Soon...</div>
@@ -423,7 +420,6 @@
       <a href="gallery.html?year=2019" class="year-card-link older-year">
         <div class="year-card c19"><div class="year-title">2019</div><span class="card-btn">९ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
       </a>
-      <!-- 2018 Card -->
       <a href="gallery.html?year=2018" class="year-card-link older-year">
         <div class="year-card c18"><div class="year-title">2018</div><span class="card-btn">११ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
       </a>
@@ -516,6 +512,25 @@
         <div class="aarti-img-box">लवकरच येत आहे...</div>
       </div>
 
+      <!-- नवीन Instagram QR Scanner Section -->
+      <div class="card" style="text-align: center;">
+        <div class="card-title" style="justify-content: center; margin-bottom: 10px; font-size: 20px;">
+          <i class="fa-brands fa-instagram"></i> इंस्टाग्राम पेज
+        </div>
+        <div style="font-size: 13px; color: #ccc; margin-bottom: 15px;">आपल्या पेजला फॉलो करा आणि रोजचे अपडेट्स मिळवा</div>
+        
+        <div style="background: #fff; padding: 10px; border-radius: 10px; display: inline-block; margin-bottom: 15px; border: 2px solid var(--gold-primary);">
+          <div id="qrcode" style="display: flex; justify-content: center;"></div>
+        </div>
+        <div style="font-weight: bold; font-size: 12px; color: var(--gold-light); margin-bottom: 15px; letter-spacing: 1px;">
+          @JAY_BHAVANI_NAVRATRA_MAHOTSAV_
+        </div>
+        
+        <button class="btn-action" onclick="startQRScan()" style="width: 100%; padding: 10px; font-size: 15px;">
+          <i class="fa-solid fa-camera"></i> 🔍 स्कॅन करा
+        </button>
+      </div>
+
       <!-- Location -->
       <div class="card location-card">
         <div class="card-title" style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot"></i> आमची ठिकाणे</div>
@@ -571,6 +586,24 @@
       </a>
     </div>
   </footer>
+
+  <!-- ==========================================
+       Full Screen Fake Scanner Overlay
+       ========================================== -->
+  <div id="fake-scanner-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.95); z-index: 9999; flex-direction: column; justify-content: center; align-items: center;">
+    <div style="position: relative; width: 220px; height: 220px; border: 2px solid rgba(50, 205, 50, 0.3); border-radius: 15px; display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: 0 0 20px rgba(50, 205, 50, 0.2); background: rgba(50, 205, 50, 0.05);">
+      <div style="position: absolute; top: -2px; left: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-right: none; border-bottom: none;"></div>
+      <div style="position: absolute; bottom: -2px; right: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-left: none; border-top: none;"></div>
+      <div style="position: absolute; top: -2px; right: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-left: none; border-bottom: none;"></div>
+      <div style="position: absolute; bottom: -2px; left: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-right: none; border-top: none;"></div>
+      
+      <i class="fa-solid fa-qrcode" style="font-size: 120px; color: rgba(50, 205, 50, 0.3);"></i>
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #32cd32; box-shadow: 0 0 15px 5px rgba(50, 205, 50, 0.6); animation: scanLaser 1.2s ease-in-out infinite alternate;"></div>
+    </div>
+    <div id="scan-status-text" style="margin-top: 30px; color: #32cd32; font-family: 'Courier New', Courier, monospace; font-size: 18px; font-weight: bold; letter-spacing: 1px; text-shadow: 0 0 10px rgba(50, 205, 50, 0.8);">कॅमेरा सुरू होत आहे...</div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <script>
     function toggleMenu() {
@@ -635,6 +668,43 @@
       } else {
         alert('तुमच्या मोबाईलमध्ये शेअर करण्याचा पर्याय उपलब्ध नाही. कृपया लिंक कॉपी करा.');
       }
+    }
+
+    // QR Code Generate
+    const instagramURL = "https://www.instagram.com/jay_bhavani_navratra_mahotsav_?obrf=NW9zcnRsNG43MjJk";
+    new QRCode(document.getElementById("qrcode"), {
+      text: instagramURL,
+      width: 130,
+      height: 130,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Fake QR Scan Animation Logic
+    function startQRScan() {
+      const overlay = document.getElementById("fake-scanner-overlay");
+      const statusText = document.getElementById("scan-status-text");
+
+      overlay.style.display = "flex";
+      
+      setTimeout(() => {
+        statusText.innerText = "QR कोड स्कॅन करत आहे...";
+      }, 800);
+
+      setTimeout(() => {
+        statusText.innerText = "लिंक मिळवत आहे...";
+      }, 1800);
+
+      setTimeout(() => {
+        statusText.innerText = "✅ स्कॅन यशस्वी!";
+        statusText.style.color = "#fff";
+        
+        setTimeout(() => {
+          window.location.href = instagramURL;
+        }, 500);
+
+      }, 2800); 
     }
   </script>
 
