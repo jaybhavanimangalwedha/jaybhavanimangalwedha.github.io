@@ -83,7 +83,6 @@
     .section-title { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 28px; color: var(--gold-primary); text-align: center; margin-bottom: 30px; letter-spacing: 1px; }
     .section-title::after { content: ""; display: block; width: 50px; height: 3px; background: var(--gold-primary); margin: 8px auto 0; border-radius: 2px; }
 
-    /* Updated Banner Design Without Timer */
     .banner-2026 { 
       margin-bottom: 25px; border: 1px solid var(--gold-primary); border-radius: 12px; 
       background: linear-gradient(90deg, #1a1500 0%, #0d0a00 50%, #050505 100%); 
@@ -208,9 +207,6 @@
     .load-more-btn { background: transparent; color: var(--gold-primary); border: 1px solid var(--gold-primary); padding: 8px 30px; border-radius: 30px; font-size: 15px; font-weight: 700; cursor: pointer; margin: 30px auto 0; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; width: max-content; }
     .load-more-btn:hover { background: var(--gold-primary); color: #000; }
 
-    .video-wrapper { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-    .video-wrapper video { width: 100%; border-radius: 8px; outline: none; }
-
     .dashboard-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
     .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: 0.3s; }
     .card:hover { border-color: rgba(251, 197, 49, 0.5); }
@@ -226,7 +222,7 @@
 
     .donation-desc { color: #ccc; font-size: 13px; margin: 0 0 15px 0; line-height: 1.5; }
     .donation-body { display: flex; gap: 20px; align-items: center; justify-content: space-around; }
-    .qr-container { background: #000; border: 1px dashed var(--gold-primary); border-radius: 8px; width: 100px; height: 100px; display: flex; justify-content: center; align-items: center; }
+    .qr-container { background: #fff; border: 1px dashed var(--gold-primary); border-radius: 8px; width: 100px; height: 100px; display: flex; justify-content: center; align-items: center; padding: 5px; overflow: hidden; }
     .donation-actions { display: flex; flex-direction: column; gap: 10px; align-items: center; }
     .upi-logo { font-weight: 900; font-style: italic; font-size: 18px; letter-spacing: 1px; color: #fff;}
     .upi-logo span { color: var(--gold-primary); }
@@ -369,7 +365,7 @@
         </div>
     </div>
 
-    <!-- ॥ आजचे विशेष क्षण ॥ (New Section) -->
+    <!-- ॥ आजचे विशेष क्षण ॥ -->
     <div style="text-align: center; margin-bottom: 25px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">॥ आजचे विशेष क्षण ॥</h3>
       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;">
@@ -378,12 +374,10 @@
       </div>
     </div>
 
-    <!-- special-photo.jpg इथून काढून टाकली आहे -->
-
-    <!-- वासापूजन 2026 सेक्शन -->
+    <!-- वासापूजन 2026 -->
     <div style="text-align: center; margin-top: 15px; margin-bottom: 35px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">वासापूजन 2026</h3>
-      <img src="Vasapujan2026.jpg" alt="वासापूजन 2026" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+      <img src="Vasapujan2026.jpg" loading="lazy" alt="वासापूजन 2026" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
     </div>
 
     <div class="grid-3x3">
@@ -410,7 +404,6 @@
         <div class="year-card c22"><div class="year-title">2022</div><span class="card-btn">९ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
       </a>
 
-      <!-- Hidden Older Years -->
       <a href="gallery.html?year=2021" class="year-card-link older-year">
         <div class="year-card c21"><div class="year-title">2021</div><span class="card-btn">९ दिवसांचे फोटो <div class="card-btn-icon"><i class="fa-solid fa-chevron-right"></i></div></span></div>
       </a>
@@ -435,11 +428,11 @@
     </div>
   </section>
 
-  <!-- Video Section -->
+  <!-- Video Section - CLEAN NATIVE HTML5 PLAYER (720x1280) -->
   <section id="video-gallery" class="section-container">
     <h2 class="section-title">व्हिडिओ गॅलरी</h2>
-    <div class="video-wrapper">
-      <video controls poster="video-poster.jpg">
+    <div class="video-wrapper" style="max-width: 360px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+      <video width="720" height="1280" controls style="width: 100%; height: auto; border-radius: 8px; aspect-ratio: 720 / 1280; object-fit: cover; outline: none; background-color: #000;" preload="metadata" poster="video-poster.jpg">
         <source src="your-video.mp4" type="video/mp4">
         तुमचा मोबाईल किंवा ब्राउझर व्हिडिओ सपोर्ट करत नाही.
       </video>
@@ -497,10 +490,12 @@
         </div>
         <p class="donation-desc">आपल्या योगदानाने उत्सव अधिक भव्य होईल. खालील QR वरून देणगी देऊ शकता.</p>
         <div class="donation-body">
-          <div class="qr-container"></div>
+          <div class="qr-container" style="background: #fff; padding: 5px;">
+            <img src="donate-qr.png" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
           <div class="donation-actions">
             <div class="upi-logo">UPI<span>&gt;</span></div>
-            <a href="#" class="btn-action">देणगी करा &rarr;</a>
+            <a href="upi://pay?pa=Q824044339@ybl&pn=JAY%20BHAVANI%20TARUN%20MANDAL&cu=INR" class="btn-action">देणगी करा &rarr;</a>
           </div>
         </div>
       </div>
