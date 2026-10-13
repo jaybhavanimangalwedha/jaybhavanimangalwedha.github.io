@@ -428,12 +428,14 @@
     </div>
   </section>
 
-  <!-- Video Section - YouTube Embed -->
+  <!-- Video Section - YouTube Embed with Hidden Title Bar -->
   <section id="video-gallery" class="section-container">
     <h2 class="section-title">व्हिडिओ गॅलरी</h2>
     <div class="video-wrapper" style="max-width: 360px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+      <!-- Container to hide the top bar -->
       <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
-        <iframe src="https://www.youtube.com/embed/yeMa8cuW2VQ?rel=0&modestbranding=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <!-- Negative top margin pulls the video up, hiding the title/logo bar -->
+        <iframe src="https://www.youtube.com/embed/yeMa8cuW2VQ?autoplay=0&controls=1&modestbranding=1&rel=0&showinfo=0" style="position: absolute; top: -60px; left: 0; width: 100%; height: calc(100% + 60px); border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </section>
