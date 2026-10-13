@@ -428,14 +428,27 @@
     </div>
   </section>
 
-  <!-- Video Section - Cloudinary Embed (Fast & Clean) -->
+  <!-- Video Section - Cloudinary Embed (Multiple Videos) -->
   <section id="video-gallery" class="section-container">
     <h2 class="section-title">व्हिडिओ गॅलरी</h2>
-    <div class="video-wrapper" style="max-width: 360px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-      <!-- Cloudinary Player Container -->
-      <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
-        <iframe src="https://player.cloudinary.com/embed/?cloud_name=a2l69ehz&public_id=1791814136046&player[showLogo]=false" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    
+    <!-- Flexbox Container for Multiple Videos -->
+    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+      
+      <!-- पहिला व्हिडिओ -->
+      <div class="video-wrapper" style="width: 100%; max-width: 360px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+        <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
+          <iframe src="https://player.cloudinary.com/embed/?cloud_name=a2l69ehz&public_id=1791814136046&player[showLogo]=false" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
       </div>
+
+      <!-- दुसरा व्हिडिओ -->
+      <div class="video-wrapper" style="width: 100%; max-width: 360px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+        <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
+          <iframe src="https://player.cloudinary.com/embed/?cloud_name=a2l69ehz&public_id=1791897065098&player[showLogo]=false" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+
     </div>
   </section>
 
