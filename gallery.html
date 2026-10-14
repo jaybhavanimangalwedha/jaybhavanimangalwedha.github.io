@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageHeaderTitle">उत्सव गॅलरी</title>
   
-  <!-- फास्ट लोडिंगसाठी प्रीकनेक्ट -->
-  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+  <link rel="preconnect" href="https://jaybhavanimangalwedha.github.io" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -54,17 +53,14 @@
 
     .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
 
-    /* अट १: आधीसारखे दोन-दोनच्या रांगेत चौकोनी बॉक्स (Grid) */
+    /* तुमचा जुना Grid Layout */
     .grid { 
       display: grid; 
+      /* Grid 2 columns fix thevla aahe jyamule photo stretch honar nahit */
       grid-template-columns: repeat(2, 1fr); 
-      gap: 12px; 
-      margin-bottom: 30px; 
+      gap: 15px; 
+      margin-bottom: 25px; 
       align-items: start; 
-    }
-
-    @media (min-width: 768px) {
-      .grid { grid-template-columns: repeat(4, 1fr); }
     }
 
     @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -78,13 +74,15 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
       cursor: pointer;
       transition: 0.3s;
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      position: relative; 
     }
-    
+
     .photo-card::before {
       content: "";
       position: absolute;
-      top: 50px;
+      top: 45px;
       left: 50%;
       width: 26px;
       height: 26px;
@@ -100,15 +98,15 @@
 
     .photo-card img {
       width: 100%;
-      height: 150px; 
+      height: 120px; 
       object-fit: cover;
       display: block;
+      border-bottom: 1px solid var(--card-border);
       position: relative;
-      z-index: 1;
-      image-rendering: high-quality;
+      z-index: 1; 
     }
 
-    .photo-title { padding: 8px 5px; font-weight: 600; font-size: 14px; color: var(--gold-primary); min-height: 20px; position: relative; z-index: 1; background: var(--card-bg);}
+    .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); min-height: 20px;}
 
     .section-divider {
       display: flex; align-items: center; text-align: center; color: var(--gold-primary); margin: 30px 0 20px;
@@ -117,8 +115,8 @@
       content: ''; flex: 1; border-bottom: 1px solid var(--card-border);
     }
     .section-divider span { padding: 0 15px; font-size: 18px; font-weight: 800; }
-
-    .day-container { margin-bottom: 30px; }
+    
+    .day-wrapper { margin-bottom: 20px; }
 
     .modal {
       display: none; 
@@ -128,7 +126,6 @@
       left: 0; top: 0; 
       width: 100%; height: 100%; 
       background-color: rgba(0,0,0,0.95);
-      backdrop-filter: blur(5px);
     }
     .modal-content {
       margin: auto;
@@ -137,7 +134,6 @@
       max-height: 85vh;
       object-fit: contain;
       border-radius: 5px;
-      image-rendering: high-quality;
     }
     .close-btn {
       position: absolute;
@@ -164,15 +160,20 @@
       <span class="subtitle-extra">जय भवानी प्रसन्न</span>
     </h1>
 
+    <div class="section-divider"><span>११ दिवसांचे फोटो</span></div>
+    
+    <!-- इथे दिवसानुसार फोटो येतील -->
     <div id="dynamicDaysContainer"></div>
 
-    <div class="section-divider" id="otherDivider" style="display:none;"><span>इतर फोटो</span></div>
+    <div class="section-divider"><span>इतर</span></div>
     <div class="grid" id="otherGrid"></div>
+
   </div>
 
+  <!-- The Modal -->
   <div id="imageModal" class="modal">
     <span class="close-btn" onclick="closeFullImg()">&times;</span>
-    <img class="modal-content" id="fullImage">
+    <img class="modal-content" id="fullImage" loading="lazy" decoding="async">
   </div>
 
   <script>
@@ -182,112 +183,76 @@
     document.getElementById('pageHeaderTitle').innerText = year + ' - उत्सव गॅलरी';
     document.getElementById('mainTitle').innerHTML = year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>';
 
+    const fallbackImg = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
     const dayNames = [
       "पहिला दिवस", "दुसरा दिवस", "तिसरा दिवस", "चौथा दिवस", "पाचवा दिवस", 
       "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस", "अकरावा दिवस"
     ];
 
-    // अट २: फास्ट लोडिंग (५५ वेळा शोधणे बंद केले, जो फोटो असेल तोच दिसेल, नसलेला आपोआप गायब होईल)
-    function buildFastGallery() {
-        let container = document.getElementById('dynamicDaysContainer');
-        let html = '';
-
-        for (let i = 1; i <= 11; i++) {
-            html += `<div class="day-container" id="day-box-${i}">`;
-            html += `<div class="section-divider"><span>${dayNames[i-1]}</span></div>`;
-            html += `<div class="grid">`;
-            
-            // मुख्य फोटो
-            let mainPic = `${year}/${year}day${i}.jpg`;
-            html += getPhotoCard(mainPic, "मुख्य दर्शन", i);
-
-            // इतर ५ फोटो
-            for (let j = 1; j <= 5; j++) {
-                let subPic = `${year}/${year}day${i}_${j}.jpg`;
-                html += getPhotoCard(subPic, `फोटो ${j}`, i);
-            }
-            
-            html += `</div></div>`;
-        }
-        container.innerHTML = html;
-        loadOtherPhotos();
+    // Mix na honyasathi pratyek divasacha swatantra grid banavla
+    let allDaysHtml = '';
+    
+    // Main Loop
+    for (let i = 1; i <= 11; i++) {
+      let dayGroupHtml = `<div class="grid">`;
+      
+      // १. मुख्य फोटो 
+      let imgSrcMain = `${year}/${year}day${i}.jpg`;
+      dayGroupHtml += `
+        <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+          <img src="${imgSrcMain}" loading="lazy" decoding="async" alt="${dayNames[i-1]}" onerror="this.parentElement.style.display='none';">
+          <div class="photo-title">${dayNames[i-1]}</div>
+        </div>
+      `;
+      
+      // २. इतर ५ फोटो 
+      for(let j = 1; j <= 5; j++) {
+        let imgSrcSub = `${year}/${year}day${i}_${j}.jpg`;
+        dayGroupHtml += `
+          <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+            <img src="${imgSrcSub}" loading="lazy" decoding="async" alt="${dayNames[i-1]} (फोटो ${j})" onerror="this.parentElement.style.display='none';">
+            <div class="photo-title">${dayNames[i-1]}</div>
+          </div>
+        `;
+      }
+      dayGroupHtml += `</div>`;
+      
+      // Divasacha group add karne
+      allDaysHtml += `<div class="day-wrapper">${dayGroupHtml}</div>`;
     }
+    
+    document.getElementById('dynamicDaysContainer').innerHTML = allDaysHtml;
 
-    function getPhotoCard(url, title, dayId) {
-        // lazy loading मुळे मोबाईल फक्त स्क्रीनवरचे फोटो लोड करेल
-        return `
-        <div class="photo-card day-card-${dayId}" onclick="openFullImg('${url}')">
-          <img src="${url}" loading="lazy" decoding="async" alt="${title}" onerror="hideCard(this, '${dayId}')">
-          <div class="photo-title">${title}</div>
-        </div>`;
-    }
+    // इतर फोटोंचे बॉक्स
+    const otherItems = [
+      { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
+      { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
+      { file: 'vishesh.jpg', title: 'विशेष क्षण' },
+      { file: 'aarti.jpg', title: 'महाआरती' }
+    ];
 
-    // फोटो नसल्यास तो बॉक्स आणि पूर्ण दिवस आपोआप गायब करण्याची सिस्टीम
-    function hideCard(imgNode, dayId) {
-        let card = imgNode.closest('.photo-card');
-        if (card) {
-            card.style.display = 'none';
-            card.classList.add('hidden');
-        }
-        
-        setTimeout(() => {
-            let dayBox = document.getElementById(`day-box-${dayId}`);
-            if (dayBox) {
-                let total = dayBox.querySelectorAll(`.day-card-${dayId}`).length;
-                let hidden = dayBox.querySelectorAll(`.day-card-${dayId}.hidden`).length;
-                if (total === hidden) {
-                    dayBox.style.display = 'none'; // पूर्ण दिवसाचा कंटेनर गायब करा
-                }
-            }
-        }, 50);
-    }
-
-    function loadOtherPhotos() {
-        const otherItems = [
-          { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
-          { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
-          { file: 'vishesh.jpg', title: 'विशेष क्षण' },
-          { file: 'aarti.jpg', title: 'महाआरती' }
-        ];
-        
-        let otherHtml = '';
-        otherItems.forEach((item, index) => {
-            let url = `${year}/${year}${item.file}`;
-            otherHtml += `
-            <div class="photo-card other-card" onclick="openFullImg('${url}')">
-              <img src="${url}" loading="lazy" decoding="async" alt="${item.title}" onerror="hideOtherCard(this)">
-              <div class="photo-title">${item.title}</div>
-            </div>`;
-        });
-        
-        document.getElementById('otherGrid').innerHTML = otherHtml;
-        document.getElementById('otherDivider').style.display = 'flex';
-    }
-
-    function hideOtherCard(imgNode) {
-        let card = imgNode.closest('.photo-card');
-        if (card) {
-            card.style.display = 'none';
-            card.classList.add('hidden');
-        }
-        setTimeout(() => {
-            let total = document.querySelectorAll('.other-card').length;
-            let hidden = document.querySelectorAll('.other-card.hidden').length;
-            if (total === hidden) {
-                document.getElementById('otherDivider').style.display = 'none';
-            }
-        }, 50);
-    }
+    let otherHtml = '';
+    otherItems.forEach(item => {
+      let imgSrc = `${year}/${year}${item.file}`;
+      otherHtml += `
+        <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
+          <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" onerror="this.parentElement.style.display='none';">
+          <div class="photo-title">${item.title}</div>
+        </div>
+      `;
+    });
+    document.getElementById('otherGrid').innerHTML = otherHtml;
 
     function openFullImg(src) {
+      if (src !== fallbackImg) {
         document.getElementById("imageModal").style.display = "block";
         document.getElementById("fullImage").src = src;
+      }
     }
     function closeFullImg() {
-        document.getElementById("imageModal").style.display = "none";
+      document.getElementById("imageModal").style.display = "none";
     }
-
-    buildFastGallery();
   </script>
 </body>
 </html>
