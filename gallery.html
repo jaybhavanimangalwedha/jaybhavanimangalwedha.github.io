@@ -1,14 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="mr">
-<head>
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageHeaderTitle">उत्सव गॅलरी</title>
-  
-  <link rel="preconnect" href="https://jaybhavanimangalwedha.github.io" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <style>
     :root {
       --bg-dark: #050505;
@@ -53,16 +50,15 @@
 
     .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
 
-    /* तुमचा जुना Grid Layout */
     .grid { 
       display: grid; 
-      /* Grid 2 columns fix thevla aahe jyamule photo stretch honar nahit */
-      grid-template-columns: repeat(2, 1fr); 
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
       gap: 15px; 
-      margin-bottom: 25px; 
+      margin-bottom: 30px; 
       align-items: start; 
     }
 
+    /* Loading Spinner Animation */
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
     .photo-card {
@@ -76,9 +72,10 @@
       transition: 0.3s;
       display: flex;
       flex-direction: column;
-      position: relative; 
+      position: relative; /* Spinner साठी आवश्यक */
     }
 
+    /* गोल फिरणारे सोनेरी चक्र (Loader) */
     .photo-card::before {
       content: "";
       position: absolute;
@@ -103,7 +100,7 @@
       display: block;
       border-bottom: 1px solid var(--card-border);
       position: relative;
-      z-index: 1; 
+      z-index: 1; /* फोटो लोड झाल्यावर तो Spinner ला झाकून टाकेल */
     }
 
     .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); min-height: 20px;}
@@ -115,8 +112,6 @@
       content: ''; flex: 1; border-bottom: 1px solid var(--card-border);
     }
     .section-divider span { padding: 0 15px; font-size: 18px; font-weight: 800; }
-    
-    .day-wrapper { margin-bottom: 20px; }
 
     .modal {
       display: none; 
@@ -146,85 +141,59 @@
     }
     .close-btn:hover { color: var(--gold-primary); }
   </style>
-</head>
-<body>
-
+ </head>
+ <body>
   <div class="header">
-    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> मागे जा</a>
+   <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> मागे जा</a>
   </div>
-
   <div class="container">
-    <h1 class="page-title" id="mainTitle">
-      उत्सव गॅलरी 
-      <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span>
-      <span class="subtitle-extra">जय भवानी प्रसन्न</span>
-    </h1>
-
-    <div class="section-divider"><span>११ दिवसांचे फोटो</span></div>
-    
-    <!-- इथे दिवसानुसार फोटो येतील -->
-    <div id="dynamicDaysContainer"></div>
-
-    <div class="section-divider"><span>इतर</span></div>
-    <div class="grid" id="otherGrid"></div>
-
+   <h1 class="page-title" id="mainTitle">उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span> <span class="subtitle-extra">जय भवानी प्रसन्न</span></h1>
+   <!-- 10 Days Photos -->
+   <div class="section-divider">
+    <span>१० दिवसांचे फोटो</span>
+   </div>
+   <div class="grid" id="daysGrid"></div>
+   <!-- इतर फोटो -->
+   <div class="section-divider">
+    <span>इतर</span>
+   </div>
+   <div class="grid" id="otherGrid"></div>
   </div>
-
   <!-- The Modal -->
   <div id="imageModal" class="modal">
-    <span class="close-btn" onclick="closeFullImg()">&times;</span>
-    <img class="modal-content" id="fullImage" loading="lazy" decoding="async">
+   <span class="close-btn" onclick="closeFullImg()">×</span> <img class="modal-content" id="fullImage" loading="lazy" decoding="async">
   </div>
-
   <script>
+    // URL मधून वर्ष शोधणे (उदा. gallery.html?year=2018 असेल तर 2018 पकडेल)
     const urlParams = new URLSearchParams(window.location.search);
-    const year = urlParams.get('year') || '2026';
+    const year = urlParams.get('year') || '2017';
 
+    // ब्राउझर टायटल आणि हेडिंग बरोबर सेट करणे
     document.getElementById('pageHeaderTitle').innerText = year + ' - उत्सव गॅलरी';
     document.getElementById('mainTitle').innerHTML = year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>';
 
+    // सुरक्षित बेस६4 पारदर्शक इमेज (ब्लिंक न होण्यासाठी)
     const fallbackImg = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
+    // १० दिवसांची नावे
     const dayNames = [
       "पहिला दिवस", "दुसरा दिवस", "तिसरा दिवस", "चौथा दिवस", "पाचवा दिवस", 
-      "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस", "अकरावा दिवस"
+      "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस"
     ];
 
-    // Mix na honyasathi pratyek divasacha swatantra grid banavla
-    let allDaysHtml = '';
-    
-    // Main Loop
-    for (let i = 1; i <= 11; i++) {
-      let dayGroupHtml = `<div class="grid">`;
-      
-      // १. मुख्य फोटो 
-      let imgSrcMain = `${year}/${year}day${i}.jpg`;
-      dayGroupHtml += `
+    let daysHtml = '';
+    for (let i = 1; i <= 10; i++) {
+      let imgSrc = `${year}/${year}day${i}.jpg`;
+      daysHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrcMain}" loading="lazy" decoding="async" alt="${dayNames[i-1]}" onerror="this.parentElement.style.display='none';">
+          <img src="${imgSrc}" loading="lazy" decoding="async" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
           <div class="photo-title">${dayNames[i-1]}</div>
         </div>
       `;
-      
-      // २. इतर ५ फोटो 
-      for(let j = 1; j <= 5; j++) {
-        let imgSrcSub = `${year}/${year}day${i}_${j}.jpg`;
-        dayGroupHtml += `
-          <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-            <img src="${imgSrcSub}" loading="lazy" decoding="async" alt="${dayNames[i-1]} (फोटो ${j})" onerror="this.parentElement.style.display='none';">
-            <div class="photo-title">${dayNames[i-1]}</div>
-          </div>
-        `;
-      }
-      dayGroupHtml += `</div>`;
-      
-      // Divasacha group add karne
-      allDaysHtml += `<div class="day-wrapper">${dayGroupHtml}</div>`;
     }
-    
-    document.getElementById('dynamicDaysContainer').innerHTML = allDaysHtml;
+    document.getElementById('daysGrid').innerHTML = daysHtml;
 
-    // इतर फोटोंचे बॉक्स
+    // इतर फोटोंची नावे आणि फाईल्स (येथे 'सजावट' च्या जागी '✨ मंदिर देखावा' केले आहे)
     const otherItems = [
       { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
       { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
@@ -237,13 +206,14 @@
       let imgSrc = `${year}/${year}${item.file}`;
       otherHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" onerror="this.parentElement.style.display='none';">
+          <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
           <div class="photo-title">${item.title}</div>
         </div>
       `;
     });
     document.getElementById('otherGrid').innerHTML = otherHtml;
 
+    // Modal Functions
     function openFullImg(src) {
       if (src !== fallbackImg) {
         document.getElementById("imageModal").style.display = "block";
@@ -254,5 +224,5 @@
       document.getElementById("imageModal").style.display = "none";
     }
   </script>
-</body>
+ </body>
 </html>
