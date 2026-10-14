@@ -50,15 +50,19 @@
 
     .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
 
+    /* --- हा सर्वात महत्त्वाचा डिझाईन बदल --- */
     .grid { 
       display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
-      gap: 15px; 
-      margin-bottom: 15px; 
+      grid-template-columns: repeat(2, 1fr); /* आता नेहमी २ बॉक्स दिसतील (इतर सेक्शन सारखे) */
+      gap: 12px; 
+      margin-bottom: 30px; 
       align-items: start; 
     }
 
-    /* Loading Spinner Animation */
+    @media (min-width: 768px) {
+      .grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
     .photo-card {
@@ -94,12 +98,11 @@
 
     .photo-card img {
       width: 100%;
-      height: 140px; 
+      height: 150px; 
       object-fit: cover;
       display: block;
       position: relative;
       z-index: 1;
-      /* ओरिजिनल क्वालिटी आणि शार्पनेससाठी CSS */
       image-rendering: high-quality;
       image-rendering: -webkit-optimize-contrast;
     }
@@ -107,16 +110,16 @@
     .photo-title { padding: 8px 5px; font-weight: 600; font-size: 14px; color: var(--gold-primary); min-height: 20px;}
 
     .section-divider {
-      display: flex; align-items: center; text-align: center; color: var(--gold-primary); margin: 35px 0 20px;
+      display: flex; align-items: center; text-align: center; color: var(--gold-primary); margin: 30px 0 20px;
     }
     .section-divider::before, .section-divider::after {
       content: ''; flex: 1; border-bottom: 1px solid var(--card-border);
     }
-    .section-divider span { padding: 0 15px; font-size: 20px; font-weight: 800; }
+    .section-divider span { padding: 0 15px; font-size: 18px; font-weight: 800; }
 
-    .day-container { margin-bottom: 40px; }
+    .day-container { margin-bottom: 30px; }
     
-    .loading-text { text-align: center; color: var(--gold-primary); font-size: 18px; margin: 50px 0; font-weight: bold; }
+    .loading-text { text-align: center; color: var(--gold-primary); font-size: 16px; margin: 40px 0; font-weight: bold; }
 
     .modal {
       display: none; 
@@ -135,7 +138,6 @@
       max-height: 85vh;
       object-fit: contain;
       border-radius: 5px;
-      /* मोठ्या फोटोसाठी ओरिजिनल क्वालिटी सपोर्ट */
       image-rendering: high-quality;
       image-rendering: -webkit-optimize-contrast;
     }
@@ -164,13 +166,13 @@
       <span class="subtitle-extra">जय भवानी प्रसन्न</span>
     </h1>
 
-    <div id="loadingText" class="loading-text">गॅलरी लोड होत आहे... <i class="fa-solid fa-spinner fa-spin"></i></div>
+    <div id="loadingText" class="loading-text">फोटो लोड होत आहेत... <i class="fa-solid fa-spinner fa-spin"></i></div>
 
     <!-- ऑटोमॅटिक दिवस तयार करण्यासाठी कंटेनर -->
     <div id="dynamicDaysContainer"></div>
 
     <!-- इतर फोटो -->
-    <div class="section-divider"><span>इतर</span></div>
+    <div class="section-divider"><span>इतर फोटो</span></div>
     <div class="grid" id="otherGrid"></div>
 
   </div>
@@ -178,131 +180,114 @@
   <!-- The Modal -->
   <div id="imageModal" class="modal">
     <span class="close-btn" onclick="closeFullImg()">&times;</span>
-    <img class="modal-content" id="fullImage" loading="lazy" decoding="async">
+    <img class="modal-content" id="fullImage">
   </div>
 
   <script>
-    // GitHub Repo ची माहिती (येथे तुमचे युझरनेम आणि रेपो नाव टाका, उदा. "jaybhavanimangalwedha/navratri")
-    const GITHUB_REPO = "jaybhavanimangalwedha/jaybhavanimangalwedha.github.io"; 
-
     const urlParams = new URLSearchParams(window.location.search);
-    const year = urlParams.get('year') || '2017';
+    const year = urlParams.get('year') || '2026';
 
     document.getElementById('pageHeaderTitle').innerText = year + ' - उत्सव गॅलरी';
     document.getElementById('mainTitle').innerHTML = year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>';
-
-    const fallbackImg = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
     const dayNames = [
       "पहिला दिवस", "दुसरा दिवस", "तिसरा दिवस", "चौथा दिवस", "पाचवा दिवस", 
       "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस", "अकरावा दिवस"
     ];
 
-    async function loadGallery() {
-        const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${year}`;
-        
-        try {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error('Network response was not ok');
-            const files = await response.json();
-            
-            // फक्त इमेजेस फिल्टर करणे
-            const images = files.filter(f => f.name.endsWith('.jpg') || f.name.endsWith('.png'));
-            
-            let daysData = {}; 
-
-            images.forEach(img => {
-                let name = img.name;
-                
-                // जर फाईलचे नाव year+day+num (उदा. 2026day4.jpg किंवा 2026day4_1.jpg) असेल
-                let match = name.match(new RegExp(`^${year}day(\\d+)(?:_\\d+)?\\.jpg$`));
-                if(match) {
-                    let dayNum = match[1];
-                    if(!daysData[dayNum]) daysData[dayNum] = [];
-                    // Raw ओरिजिनल फाईल वापरण्यासाठी download_url
-                    daysData[dayNum].push(img.download_url); 
-                }
-            });
-
-            const container = document.getElementById('dynamicDaysContainer');
-            container.innerHTML = ""; 
-            document.getElementById('loadingText').style.display = "none";
-
-            let foundAnyDay = false;
-            for(let i=1; i<=11; i++) {
-                let dayStr = i.toString();
-                if(daysData[dayStr] && daysData[dayStr].length > 0) {
-                    foundAnyDay = true;
-                    
-                    let html = `<div class="day-container">`;
-                    html += `<div class="section-divider"><span>${dayNames[i-1]}</span></div>`;
-                    html += `<div class="grid">`;
-                    
-                    daysData[dayStr].forEach((imgUrl, index) => {
-                        let titleText = daysData[dayStr].length > 1 ? `फोटो ${index + 1}` : "दर्शन";
-                        html += `
-                            <div class="photo-card" onclick="openFullImg('${imgUrl}')">
-                              <img src="${imgUrl}" loading="lazy" decoding="async" alt="Day ${i} Photo ${index+1}" onerror="this.onerror=null; this.src='${fallbackImg}';">
-                              <div class="photo-title">${titleText}</div>
-                            </div>
-                        `;
-                    });
-                    
-                    html += `</div></div>`;
-                    container.innerHTML += html;
-                }
-            }
-
-            if(!foundAnyDay) {
-                container.innerHTML = `<div style="text-align:center; color:#aaa; margin: 30px 0;">या वर्षाचे फोटो अजून उपलब्ध नाहीत.</div>`;
-            }
-
-            // इतर फोटो लोड करणे
-            loadOtherPhotos(images);
-
-        } catch (error) {
-            console.error("Error loading gallery:", error);
-            document.getElementById('loadingText').innerText = "फोटो लोड करताना अडचण आली. पेज रिफ्रेश करा.";
-        }
+    // फास्ट चेकिंग लॉजिक
+    function imageExists(url) {
+        return new Promise(resolve => {
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = url;
+        });
     }
 
-    function loadOtherPhotos(images) {
+    async function loadPhotos() {
+        const container = document.getElementById('dynamicDaysContainer');
+        container.innerHTML = "";
+        let anyPhotoFound = false;
+
+        for (let i = 1; i <= 11; i++) {
+            let dayPhotos = [];
+            
+            // १. आधीचा जुना मुख्य फोटो चेक करा (उदा. 2026day1.jpg)
+            let mainPic = `${year}/${year}day${i}.jpg`;
+            if (await imageExists(mainPic)) {
+                dayPhotos.push({url: mainPic, title: "मुख्य दर्शन"});
+            }
+
+            // २. नवीन एकाच दिवसाचे अनेक फोटो चेक करा (उदा. 2026day4_1.jpg)
+            for (let j = 1; j <= 5; j++) {
+                let subPic = `${year}/${year}day${i}_${j}.jpg`;
+                if (await imageExists(subPic)) {
+                    dayPhotos.push({url: subPic, title: `फोटो ${j}`});
+                } else {
+                    break; 
+                }
+            }
+
+            // जर फोटो सापडले तरच स्क्रीनवर दाखवा
+            if (dayPhotos.length > 0) {
+                anyPhotoFound = true;
+                let html = `<div class="day-container">`;
+                html += `<div class="section-divider"><span>${dayNames[i-1]}</span></div>`;
+                html += `<div class="grid">`;
+                
+                for(let photo of dayPhotos) {
+                    html += `
+                    <div class="photo-card" onclick="openFullImg('${photo.url}')">
+                      <img src="${photo.url}" loading="lazy" alt="${photo.title}">
+                      <div class="photo-title">${photo.title}</div>
+                    </div>`;
+                }
+                html += `</div></div>`;
+                container.innerHTML += html;
+            }
+        }
+
+        document.getElementById('loadingText').style.display = "none";
+        
+        if (!anyPhotoFound) {
+            container.innerHTML = `<div style="text-align:center; color:#aaa; margin: 30px 0;">या वर्षाचे फोटो अजून अपलोड केलेले नाहीत.</div>`;
+        }
+
+        loadOtherPhotos();
+    }
+
+    async function loadOtherPhotos() {
         const otherItems = [
           { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
           { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
           { file: 'vishesh.jpg', title: 'विशेष क्षण' },
           { file: 'aarti.jpg', title: 'महाआरती' }
         ];
-
+        
         let otherHtml = '';
-        otherItems.forEach(item => {
-            let expectedName = `${year}${item.file}`;
-            let foundImage = images.find(img => img.name === expectedName);
-            let imgSrc = foundImage ? foundImage.download_url : `${year}/${expectedName}`;
-            
-            otherHtml += `
-            <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-              <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
-              <div class="photo-title">${item.title}</div>
-            </div>
-            `;
-        });
+        for (let item of otherItems) {
+            let url = `${year}/${year}${item.file}`;
+            if (await imageExists(url)) {
+                otherHtml += `
+                <div class="photo-card" onclick="openFullImg('${url}')">
+                  <img src="${url}" loading="lazy" alt="${item.title}">
+                  <div class="photo-title">${item.title}</div>
+                </div>`;
+            }
+        }
         document.getElementById('otherGrid').innerHTML = otherHtml;
     }
 
     function openFullImg(src) {
-      if (src !== fallbackImg) {
         document.getElementById("imageModal").style.display = "block";
         document.getElementById("fullImage").src = src;
-      }
     }
     function closeFullImg() {
-      document.getElementById("imageModal").style.display = "none";
+        document.getElementById("imageModal").style.display = "none";
     }
 
-    loadGallery();
-
+    loadPhotos();
   </script>
-
 </body>
 </html>
