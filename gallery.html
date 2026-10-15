@@ -185,12 +185,15 @@
       "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस"
     ];
 
-    // १. आधी फक्त १ ते १० दिवसांचे मुख्य फोटो लोड करणे
+    // --- Cloudinary Base URL ---
+    const cloudBase = "https://res.cloudinary.com/a2l69ehz/image/upload/v1/";
+
+    // १. आधी फक्त १ ते १० दिवसांचे मुख्य फोटो लोड करणे (Cloudinary URLs सह)
     let daysHtml = '';
     for (let i = 1; i <= 10; i++) {
-      let imgSrc = `${year}/${year}day${i}.jpg`;
+      let imgSrc = `${cloudBase}${year}/${year}day${i}.jpg`;
       let priorityAttr = i <= 4 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"';
-      
+
       daysHtml += `
         <div class="photo-card" id="main-day-${i}" onclick="openFullImg(this.querySelector('img').src)">
           <img src="${imgSrc}" ${priorityAttr} decoding="async" alt="${dayNames[i-1]}" 
@@ -206,7 +209,7 @@
     function checkSubImage(dayIndex, subIndex) {
       if (subIndex > 5) return; // जास्तीत जास्त ५ उप-फोटो
 
-      let subImgSrc = `${year}/${year}day${dayIndex}_${subIndex}.jpg`;
+      let subImgSrc = `${cloudBase}${year}/${year}day${dayIndex}_${subIndex}.jpg`;
       let tempImg = new Image();
 
       tempImg.onload = function() {
@@ -222,7 +225,7 @@
         let prevElem = subIndex === 1 
           ? document.getElementById(`main-day-${dayIndex}`) 
           : document.getElementById(`sub-${dayIndex}-${subIndex - 1}`);
-        
+
         if (prevElem && prevElem.parentNode) {
           prevElem.insertAdjacentElement('afterend', card);
         } else {
@@ -234,13 +237,13 @@
       };
 
       tempImg.onerror = function() {
-        // जर फोटो नाही सापडला, तर इथेच थांबा! पुढचे फोटो शोधत बसू नका.
+        // जर फोटो नाही सापडला, तर इथेच थांबा!
       };
 
       tempImg.src = subImgSrc;
     }
 
-    // ३. 'इतर' विभागातील सर्व ८ फोटो लोड करणे
+    // ३. 'इतर' विभागातील सर्व ८ फोटो लोड करणे (Cloudinary URLs सह)
     const otherItems = [
       { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
       { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
@@ -254,7 +257,7 @@
 
     let otherHtml = '';
     otherItems.forEach(item => {
-      let imgSrc = `${year}/${year}${item.file}`;
+      let imgSrc = `${cloudBase}${year}/${year}${item.file}`;
       otherHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
           <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" 
