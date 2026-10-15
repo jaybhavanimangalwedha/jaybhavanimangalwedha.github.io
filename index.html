@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/a2l69ehz/image/upload/v1/favicon.png">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,9 +95,6 @@
     .b-year { font-family: 'Poppins', sans-serif; font-size: 34px; font-weight: 800; color: var(--gold-primary); line-height: 0.9; }
     .b-coming { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 26px; color: var(--text-white); margin-top: 0; letter-spacing: 1px; }
 
-    /* ========================================================== */
-    /* AUTO UI CONTAINER */
-    /* ========================================================== */
     .auto-ui-container { 
       width: 100%; margin: 0 auto 30px auto; position: relative; 
       border: 1px solid var(--gold-primary); border-radius: 12px; 
@@ -106,9 +103,7 @@
       overflow: hidden;
     }
 
-    .auto-ui-content {
-      padding: 25px 20px;
-    }
+    .auto-ui-content { padding: 25px 20px; }
 
     .header-wrap { text-align: center; margin-bottom: 25px; }
     .trishul-line { display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
@@ -170,9 +165,6 @@
     .lotus-svg { width: 12px; height: 12px; margin: 0 4px; }
     .lotus-dynamic-svg { fill: var(--dynamic-color); }
 
-    /* ========================================================== */
-    /* Mobile Responsiveness                                      */
-    /* ========================================================== */
     .grid-3x3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
     .year-card-link { text-decoration: none; display: block; }
 
@@ -190,17 +182,17 @@
     .card-btn { align-self: flex-start; display: inline-flex; align-items: center; justify-content: space-between; padding: 5px 5px 5px 14px; background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255,255,255,0.3); border-radius: 30px; color: #fff; font-size: 13px; text-decoration: none; min-width: 140px; font-weight: 600; transition: 0.3s; pointer-events: none; z-index: 2; }
     .card-btn-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; text-shadow: none; }
 
-    /* --- YEAR CARDS BACKGROUND CSS UPDATE --- */
-    .c26 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2026/2026cover.jpg'); border-color: var(--c-2026); } .c26 .year-title::after { background: var(--c-2026); } .c26 .card-btn-icon { background: var(--c-2026); color: #fff; } .year-card-link:hover .c26 { box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); }
-    .c25 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2025/2025cover.jpg'); border-color: var(--c-2025); } .c25 .year-title::after { background: var(--c-2025); } .c25 .card-btn-icon { background: var(--c-2025); color: #000; } .year-card-link:hover .c25 { box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
-    .c24 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2024/2024cover.jpg'); border-color: var(--c-2024); } .c24 .year-title::after { background: var(--c-2024); } .c24 .card-btn-icon { background: var(--c-2024); color: #000; } .year-card-link:hover .c24 { box-shadow: 0 5px 15px rgba(0, 206, 201, 0.3); }
-    .c23 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2023/2023cover.jpg'); border-color: var(--c-2023); } .c23 .year-title::after { background: var(--c-2023); } .c23 .card-btn-icon { background: var(--c-2023); } .year-card-link:hover .c23 { box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3); }
-    .c22 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2022/2022cover.jpg'); border-color: var(--c-2022); } .c22 .year-title::after { background: var(--c-2022); } .c22 .card-btn-icon { background: var(--c-2022); } .year-card-link:hover .c22 { box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3); }
-    .c21 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2021/2021cover.jpg'); border-color: var(--c-2021); } .c21 .year-title::after { background: var(--c-2021); } .c21 .card-btn-icon { background: var(--c-2021); } .year-card-link:hover .c21 { box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3); }
-    .c20 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2020/2020cover.jpg'); border-color: var(--c-2020); } .c20 .year-title::after { background: var(--c-2020); } .c20 .card-btn-icon { background: var(--c-2020); } .year-card-link:hover .c20 { box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
-    .c19 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2019/2019cover.jpg'); border-color: var(--c-2019); } .c19 .year-title::after { background: var(--c-2019); } .c19 .card-btn-icon { background: var(--c-2019); color: #000; } .year-card-link:hover .c19 { box-shadow: 0 5px 15px rgba(0, 210, 211, 0.3); }
-    .c18 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2018/2018cover.jpg'); border-color: var(--c-2018); } .c18 .year-title::after { background: var(--c-2018); } .c18 .card-btn-icon { background: var(--c-2018); color: #fff; } .year-card-link:hover .c18 { box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3); }
-    .c17 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('2017/2017cover.jpg'); border-color: var(--c-2017); } .c17 .year-title::after { background: var(--c-2017); } .c17 .card-btn-icon { background: var(--c-2017); color: #000; } .year-card-link:hover .c17 { box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3); }
+    /* --- CLOUDINARY YEAR CARDS BACKGROUND URLS --- */
+    .c26 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2026/2026cover.jpg'); border-color: var(--c-2026); } .c26 .year-title::after { background: var(--c-2026); } .c26 .card-btn-icon { background: var(--c-2026); color: #fff; } .year-card-link:hover .c26 { box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); }
+    .c25 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2025/2025cover.jpg'); border-color: var(--c-2025); } .c25 .year-title::after { background: var(--c-2025); } .c25 .card-btn-icon { background: var(--c-2025); color: #000; } .year-card-link:hover .c25 { box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
+    .c24 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2024/2024cover.jpg'); border-color: var(--c-2024); } .c24 .year-title::after { background: var(--c-2024); } .c24 .card-btn-icon { background: var(--c-2024); color: #000; } .year-card-link:hover .c24 { box-shadow: 0 5px 15px rgba(0, 206, 201, 0.3); }
+    .c23 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2023/2023cover.jpg'); border-color: var(--c-2023); } .c23 .year-title::after { background: var(--c-2023); } .c23 .card-btn-icon { background: var(--c-2023); } .year-card-link:hover .c23 { box-shadow: 0 5px 15px rgba(232, 67, 147, 0.3); }
+    .c22 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2022/2022cover.jpg'); border-color: var(--c-2022); } .c22 .year-title::after { background: var(--c-2022); } .c22 .card-btn-icon { background: var(--c-2022); } .year-card-link:hover .c22 { box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3); }
+    .c21 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2021/2021cover.jpg'); border-color: var(--c-2021); } .c21 .year-title::after { background: var(--c-2021); } .c21 .card-btn-icon { background: var(--c-2021); } .year-card-link:hover .c21 { box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3); }
+    .c20 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2020/2020cover.jpg'); border-color: var(--c-2020); } .c20 .year-title::after { background: var(--c-2020); } .c20 .card-btn-icon { background: var(--c-2020); } .year-card-link:hover .c20 { box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
+    .c19 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2019/2019cover.jpg'); border-color: var(--c-2019); } .c19 .year-title::after { background: var(--c-2019); } .c19 .card-btn-icon { background: var(--c-2019); color: #000; } .year-card-link:hover .c19 { box-shadow: 0 5px 15px rgba(0, 210, 211, 0.3); }
+    .c18 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2018/2018cover.jpg'); border-color: var(--c-2018); } .c18 .year-title::after { background: var(--c-2018); } .c18 .card-btn-icon { background: var(--c-2018); color: #fff; } .year-card-link:hover .c18 { box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3); }
+    .c17 { background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), url('https://res.cloudinary.com/a2l69ehz/image/upload/v1/2017/2017cover.jpg'); border-color: var(--c-2017); } .c17 .year-title::after { background: var(--c-2017); } .c17 .card-btn-icon { background: var(--c-2017); color: #000; } .year-card-link:hover .c17 { box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3); }
 
     .older-year { display: none; }
     .older-year.show-year { display: block; }
@@ -212,13 +204,9 @@
     .card:hover { border-color: rgba(251, 197, 49, 0.5); }
     .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .card-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; color: var(--gold-primary); }
-    .card-title i { font-size: 16px; }
 
     .updates-list { display: flex; flex-direction: column; gap: 12px; }
     .update-item { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 10px; }
-    .update-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .update-date { color: var(--gold-light); font-size: 12px; font-weight: 600; opacity: 0.8; }
-    .update-title { font-size: 15px; font-weight: 600; margin-top: 3px; color: #eee; }
 
     .donation-desc { color: #ccc; font-size: 13px; margin: 0 0 15px 0; line-height: 1.5; }
     .donation-body { display: flex; gap: 20px; align-items: center; justify-content: space-around; }
@@ -257,7 +245,6 @@
     .copy-link { background: rgba(251, 197, 49, 0.1); color: var(--gold-primary); text-decoration: none; padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1px solid rgba(251, 197, 49, 0.3); transition: 0.3s; }
     .copy-link:hover { background: var(--gold-primary); color: #000; }
 
-    /* लेझर ॲनिमेशन CSS */
     @keyframes scanLaser {
       0% { top: 0; }
       100% { top: 100%; }
@@ -272,17 +259,6 @@
       .nav-links { position: absolute; top: 50px; left: 0; width: 100%; background: rgba(5, 5, 5, 0.98); flex-direction: column; text-align: center; gap: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; border-bottom: 1px solid var(--card-border); }
       .nav-links.active { max-height: 300px; }
       .nav-links li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-      .auto-ui-container { margin-bottom: 25px; }
-      .auto-ui-content { padding: 20px 10px; }
-
-      @media (max-width: 360px) {
-          .boxes-grid { gap: 4px; }
-          .neon-box { height: 135px; padding: 8px 1px; }
-          .brush-text { font-size: 16px; }
-          .brush-subtext { font-size: 12px; }
-          .bottom-title { font-size: 13px; }
-      }
     }
   </style>
 </head>
@@ -301,9 +277,9 @@
     </ul>
   </nav>
 
-  <!-- Hero Banner -->
+  <!-- Hero Banner (Cloudinary URL) -->
   <section id="home" class="hero-banner">
-    <img src="banner.png" fetchpriority="high" decoding="async" alt="जय भवानी नवरात्र महोत्सव मंडळ बॅनर" class="full-width-banner">
+    <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1/banner.png" fetchpriority="high" decoding="async" alt="जय भवानी नवरात्र महोत्सव मंडळ बॅनर" class="full-width-banner">
   </section>
 
   <!-- Gallery Section -->
@@ -317,7 +293,6 @@
       </div>
     </div>
 
-    <!-- नवीन ऑटोमॅटिक UI (ब्लर आणि ओव्हरले काढले आहेत) -->
     <div class="auto-ui-container" id="auto-ui-section">
         <div class="auto-ui-content" id="auto-ui-content">
             <div class="header-wrap">
@@ -365,21 +340,22 @@
         </div>
     </div>
 
-    <!-- ॥ आजचे विशेष क्षण ॥ -->
+    <!-- ॥ आजचे विशेष क्षण ॥ (Cloudinary URLs) -->
     <div style="text-align: center; margin-bottom: 25px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">॥ आजचे विशेष क्षण ॥</h3>
       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;">
-        <img src="today_special_1.jpg" fetchpriority="high" decoding="async" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
-        <img src="today_special_2.jpg" fetchpriority="high" decoding="async" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
+        <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1/today_special_1.jpg" fetchpriority="high" decoding="async" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
+        <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1/today_special_2.jpg" fetchpriority="high" decoding="async" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
       </div>
     </div>
 
-    <!-- वासापूजन 2026 -->
+    <!-- वासापूजन 2026 (Cloudinary URL) -->
     <div style="text-align: center; margin-top: 15px; margin-bottom: 35px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">वासापूजन 2026</h3>
-      <img src="Vasapujan2026.jpg" fetchpriority="high" decoding="async" alt="वासापूजन 2026" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+      <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1/Vasapujan2026.jpg" fetchpriority="high" decoding="async" alt="वासापूजन 2026" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
     </div>
 
+    <!-- Year Cards Grid -->
     <div class="grid-3x3">
       <a href="gallery.html?year=2026" id="card2026" class="year-card-link" onclick="checkUnlock(event)">
         <div class="year-card c26">
@@ -428,27 +404,21 @@
     </div>
   </section>
 
-  <!-- Video Section - Cloudinary Embed (Multiple Videos) -->
+  <!-- Video Section -->
   <section id="video-gallery" class="section-container">
     <h2 class="section-title">व्हिडिओ गॅलरी</h2>
-
-    <!-- Flexbox Container for Multiple Videos -->
     <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
-
-      <!-- पहिला व्हिडिओ -->
       <div class="video-wrapper" style="width: 100%; max-width: 360px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
         <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
           <iframe src="https://player.cloudinary.com/embed/?cloud_name=a2l69ehz&public_id=1791814136046&player[showLogo]=false" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       </div>
 
-      <!-- दुसरा नवीन व्हिडिओ (cinevortex) -->
       <div class="video-wrapper" style="width: 100%; max-width: 360px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
         <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
           <iframe src="https://player.cloudinary.com/embed/?cloud_name=a2l69ehz&public_id=cinevortex_27_20261014_022544952&player[showLogo]=false" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -464,11 +434,9 @@
             🔔 सूचना व अपडेट्स
           </div>
         </div>
-
         <div id="live-notices" class="updates-list" style="margin-top: 15px;">
           <div style="color: #ccc; font-size: 14px; text-align: center;">नवीन अपडेट्स लोड होत आहेत...</div>
         </div>
-
         <script>
           fetch('notices.json')
           .then(response => response.json())
@@ -478,7 +446,6 @@
                   let parts = notice.split(" ");
                   let datePart = parts.slice(0, 3).join(" "); 
                   let textPart = parts.slice(3).join(" ");  
-
                   noticeHtml += `
                   <div class="update-item" style="border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; margin-bottom: 10px;">
                     <div class="update-text" style="display: flex; flex-direction: column; gap: 4px;">
@@ -496,7 +463,7 @@
         </script>
       </div>
 
-      <!-- Donation -->
+      <!-- Donation (Cloudinary QR URL) -->
       <div class="card">
         <div class="card-header">
           <div class="card-title"><i class="fa-solid fa-hand-holding-dollar"></i> देणगी द्या</div>
@@ -504,7 +471,7 @@
         <p class="donation-desc">आपल्या योगदानाने उत्सव अधिक भव्य होईल. खालील QR वरून देणगी देऊ शकता.</p>
         <div class="donation-body">
           <div class="qr-container" style="background: #fff; padding: 5px;">
-            <img src="donate-qr.png" fetchpriority="high" decoding="async" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+            <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1/donate-qr.png" fetchpriority="high" decoding="async" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
           </div>
           <div class="donation-actions">
             <div class="upi-logo">UPI<span>&gt;</span></div>
@@ -520,20 +487,18 @@
         <div class="aarti-img-box">लवकरच येत आहे...</div>
       </div>
 
-      <!-- नवीन Instagram QR Scanner Section -->
+      <!-- Instagram QR Scanner -->
       <div class="card" style="text-align: center;">
         <div class="card-title" style="justify-content: center; margin-bottom: 10px; font-size: 20px;">
           <i class="fa-brands fa-instagram"></i> इंस्टाग्राम पेज
         </div>
         <div style="font-size: 13px; color: #ccc; margin-bottom: 15px;">आपल्या पेजला फॉलो करा आणि रोजचे अपडेट्स मिळवा</div>
-
         <div style="background: #fff; padding: 10px; border-radius: 10px; display: inline-block; margin-bottom: 15px; border: 2px solid var(--gold-primary);">
           <div id="qrcode" style="display: flex; justify-content: center;"></div>
         </div>
         <div style="font-weight: bold; font-size: 12px; color: var(--gold-light); margin-bottom: 15px; letter-spacing: 1px;">
           @JAY_BHAVANI_NAVRATRA_MAHOTSAV_
         </div>
-
         <button class="btn-action" onclick="startQRScan()" style="width: 100%; padding: 10px; font-size: 15px;">
           <i class="fa-solid fa-camera"></i> 🔍 स्कॅन करा
         </button>
@@ -542,7 +507,6 @@
       <!-- Location -->
       <div class="card location-card">
         <div class="card-title" style="margin-bottom: 10px;"><i class="fa-solid fa-location-dot"></i> आमची ठिकाणे</div>
-
         <div class="loc-item">
           <div class="loc-info">
             <div class="loc-title-text">उत्सव ठिकाण</div>
@@ -550,7 +514,6 @@
             <a href="https://maps.app.goo.gl/JYXk81RxoUQd48sX8?g_st=ac" target="_blank" class="btn-action" style="padding: 4px 15px; font-size: 12px; margin-top: 5px;">Google Map &rarr;</a>
           </div>
         </div>
-
         <div class="loc-item">
           <div class="loc-info">
             <div class="loc-title-text">आईचा गाभारा (वर्षभर)</div>
@@ -582,7 +545,6 @@
     <span class="footer-title">॥ जय भवानी ॥</span>
     <span class="footer-address">नवरात्र महोत्सव मंडळ बाजार चौक, मंगळवेढा</span>
 
-    <!-- Premium Copyright Box -->
     <div class="copyright-box">
       <span class="copy-text">
         <i class="fa-regular fa-copyright"></i> 
@@ -595,16 +557,13 @@
     </div>
   </footer>
 
-  <!-- ==========================================
-       Full Screen Fake Scanner Overlay
-       ========================================== -->
+  <!-- Scanner Overlay -->
   <div id="fake-scanner-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.95); z-index: 9999; flex-direction: column; justify-content: center; align-items: center;">
     <div style="position: relative; width: 220px; height: 220px; border: 2px solid rgba(50, 205, 50, 0.3); border-radius: 15px; display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: 0 0 20px rgba(50, 205, 50, 0.2); background: rgba(50, 205, 50, 0.05);">
       <div style="position: absolute; top: -2px; left: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-right: none; border-bottom: none;"></div>
       <div style="position: absolute; bottom: -2px; right: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-left: none; border-top: none;"></div>
       <div style="position: absolute; top: -2px; right: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-left: none; border-bottom: none;"></div>
       <div style="position: absolute; bottom: -2px; left: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-right: none; border-top: none;"></div>
-
       <i class="fa-solid fa-qrcode" style="font-size: 120px; color: rgba(50, 205, 50, 0.3);"></i>
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #32cd32; box-shadow: 0 0 15px 5px rgba(50, 205, 50, 0.6); animation: scanLaser 1.2s ease-in-out infinite alternate;"></div>
     </div>
@@ -612,7 +571,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
   <script>
     function toggleMenu() {
       const navLinks = document.getElementById("navLinks");
@@ -670,15 +628,12 @@
           title: 'जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा',
           text: 'आमच्या नवरात्र महोत्सवाची वेबसाईट नक्की पहा!',
           url: window.location.href,
-        })
-        .then(() => console.log('Successful share'))
-        .catch((error) => console.log('Error sharing', error));
+        }).catch((error) => console.log('Error sharing', error));
       } else {
         alert('तुमच्या मोबाईलमध्ये शेअर करण्याचा पर्याय उपलब्ध नाही. कृपया लिंक कॉपी करा.');
       }
     }
 
-    // QR Code Generate
     const instagramURL = "https://www.instagram.com/jay_bhavani_navratra_mahotsav_?obrf=NW9zcnRsNG43MjJk";
     new QRCode(document.getElementById("qrcode"), {
       text: instagramURL,
@@ -689,34 +644,20 @@
       correctLevel: QRCode.CorrectLevel.H
     });
 
-    // Fake QR Scan Animation Logic
     function startQRScan() {
       const overlay = document.getElementById("fake-scanner-overlay");
       const statusText = document.getElementById("scan-status-text");
-
       overlay.style.display = "flex";
-
-      setTimeout(() => {
-        statusText.innerText = "QR कोड स्कॅन करत आहे...";
-      }, 800);
-
-      setTimeout(() => {
-        statusText.innerText = "लिंक मिळवत आहे...";
-      }, 1800);
-
+      setTimeout(() => { statusText.innerText = "QR कोड स्कॅन करत आहे..."; }, 800);
+      setTimeout(() => { statusText.innerText = "लिंक मिळवत आहे..."; }, 1800);
       setTimeout(() => {
         statusText.innerText = "✅ स्कॅन यशस्वी!";
         statusText.style.color = "#fff";
-
-        setTimeout(() => {
-          window.location.href = instagramURL;
-        }, 500);
-
+        setTimeout(() => { window.location.href = instagramURL; }, 500);
       }, 2800); 
     }
   </script>
 
-  <!-- नवीन ऑटोमॅटिक UI चे Javascript Logic -->
   <script>
     const navratriSchedule = {
         "10-11": { dayNum: "01", dayText: "पहिला दिवस", deviName: "शैलपुत्री माता", colorName: "केशरी", themeColor: "#ff6600", brushBg: "linear-gradient(90deg, #993300, #ff6600, #993300)", sphereBg: "radial-gradient(circle at 35% 35%, #ffcc80, #ff6600 40%, #803300)" },
@@ -735,12 +676,7 @@
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
         const currentDateKey = `${month}-${day}`; 
-
-        let activeData = navratriSchedule[currentDateKey];
-
-        if(!activeData) {
-            activeData = navratriSchedule["10-11"]; 
-        }
+        let activeData = navratriSchedule[currentDateKey] || navratriSchedule["10-11"];
 
         document.getElementById('ui-day-num').innerText = activeData.dayNum;
         document.getElementById('ui-day-text').innerText = activeData.dayText;
@@ -755,9 +691,7 @@
         document.documentElement.style.setProperty('--dynamic-brush', activeData.brushBg);
         document.documentElement.style.setProperty('--sphere-bg', activeData.sphereBg);
     }
-
     updateNavratriUI();
   </script>
-
 </body>
 </html>
