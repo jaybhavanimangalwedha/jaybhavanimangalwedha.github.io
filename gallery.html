@@ -89,6 +89,11 @@
       z-index: 0;
     }
 
+    /* फोटो लोड झाल्यावर मागे फिरणारे गोल चक्र बंद करण्यासाठी */
+    .photo-card.loaded::before {
+      display: none;
+    }
+
     .photo-card:hover { border-color: rgba(251, 197, 49, 0.5); transform: translateY(-3px); }
 
     .photo-card img {
@@ -99,6 +104,7 @@
       border-bottom: 1px solid var(--card-border);
       position: relative;
       z-index: 1; 
+      background-color: transparent;
     }
 
     .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); min-height: 20px;}
@@ -174,40 +180,76 @@
     document.getElementById('pageHeaderTitle').innerText = year + ' - उत्सव गॅलरी';
     document.getElementById('mainTitle').innerHTML = year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>';
 
-    const fallbackImg = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
     const dayNames = [
       "पहिला दिवस", "दुसरा दिवस", "तिसरा दिवस", "चौथा दिवस", "पाचवा दिवस", 
       "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस"
     ];
 
+    // १. आधी फक्त १ ते १० दिवसांचे मुख्य फोटो लोड करणे
     let daysHtml = '';
     for (let i = 1; i <= 10; i++) {
       let imgSrc = `${year}/${year}day${i}.jpg`;
+      let priorityAttr = i <= 4 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"';
+      
       daysHtml += `
-        <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" loading="eager" fetchpriority="high" decoding="async" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+        <div class="photo-card" id="main-day-${i}" onclick="openFullImg(this.querySelector('img').src)">
+          <img src="${imgSrc}" ${priorityAttr} decoding="async" alt="${dayNames[i-1]}" 
+               onload="this.parentElement.classList.add('loaded'); checkSubImage(${i}, 1);" 
+               onerror="this.parentElement.style.display='none'; checkSubImage(${i}, 1);">
           <div class="photo-title">${dayNames[i-1]}</div>
         </div>
       `;
-
-      for (let j = 1; j <= 5; j++) {
-        let subImgSrc = `${year}/${year}day${i}_${j}.jpg`;
-        daysHtml += `
-          <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)" style="display:none;" id="sub-${i}-${j}">
-            <img src="${subImgSrc}" loading="eager" fetchpriority="high" decoding="async" alt="Day ${i} - ${j}" onload="document.getElementById('sub-${i}-${j}').style.display='flex';" onerror="this.parentElement.style.display='none';">
-            <div class="photo-title">${dayNames[i-1]} (फोटो ${j})</div>
-          </div>
-        `;
-      }
     }
     document.getElementById('daysGrid').innerHTML = daysHtml;
 
+    // २. स्मार्ट उप-फोटो चेकिंग: मुख्य फोटो आल्यानंतरच क्रमाक्रमाने (_1, _2...) फोटो आहेत का ते तपासणे
+    function checkSubImage(dayIndex, subIndex) {
+      if (subIndex > 5) return; // जास्तीत जास्त ५ उप-फोटो
+
+      let subImgSrc = `${year}/${year}day${dayIndex}_${subIndex}.jpg`;
+      let tempImg = new Image();
+
+      tempImg.onload = function() {
+        const card = document.createElement('div');
+        card.className = 'photo-card loaded';
+        card.id = `sub-${dayIndex}-${subIndex}`;
+        card.onclick = function() { openFullImg(subImgSrc); };
+        card.innerHTML = `
+          <img src="${subImgSrc}" decoding="async" alt="${dayNames[dayIndex-1]} (फोटो ${subIndex})">
+          <div class="photo-title">${dayNames[dayIndex-1]} (फोटो ${subIndex})</div>
+        `;
+
+        let prevElem = subIndex === 1 
+          ? document.getElementById(`main-day-${dayIndex}`) 
+          : document.getElementById(`sub-${dayIndex}-${subIndex - 1}`);
+        
+        if (prevElem && prevElem.parentNode) {
+          prevElem.insertAdjacentElement('afterend', card);
+        } else {
+          document.getElementById('daysGrid').appendChild(card);
+        }
+
+        // पहिला उप-फोटो (_1) सापडला, म्हणूनच आता पुढचा (_2) फोटो आहे का ते तपासा!
+        checkSubImage(dayIndex, subIndex + 1);
+      };
+
+      tempImg.onerror = function() {
+        // जर फोटो नाही सापडला, तर इथेच थांबा! पुढचे फोटो शोधत बसू नका.
+      };
+
+      tempImg.src = subImgSrc;
+    }
+
+    // ३. 'इतर' विभागातील सर्व ८ फोटो लोड करणे
     const otherItems = [
-      notices = { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
+      { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
       { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
       { file: 'vishesh.jpg', title: 'विशेष क्षण' },
-      { file: 'aarti.jpg', title: 'महाआरती' }
+      { file: 'aarti.jpg', title: 'महाआरती' },
+      { file: 'rath.jpg', title: 'देवीरथ सजावट' },
+      { file: 'rangoli.jpg', title: 'विशेष रांगोळी' },
+      { file: 'bhakti.jpg', title: 'भक्तिमय क्षण' },
+      { file: 'miravnuk.jpg', title: 'दसरा मिरवणूक क्षण' }
     ];
 
     let otherHtml = '';
@@ -215,7 +257,9 @@
       let imgSrc = `${year}/${year}${item.file}`;
       otherHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" loading="eager" fetchpriority="high" decoding="async" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" 
+               onload="this.parentElement.classList.add('loaded');" 
+               onerror="this.parentElement.style.display='none';">
           <div class="photo-title">${item.title}</div>
         </div>
       `;
@@ -223,13 +267,14 @@
     document.getElementById('otherGrid').innerHTML = otherHtml;
 
     function openFullImg(src) {
-      if (src !== fallbackImg) {
+      if (src) {
         document.getElementById("imageModal").style.display = "block";
         document.getElementById("fullImage").src = src;
       }
     }
     function closeFullImg() {
       document.getElementById("imageModal").style.display = "none";
+      document.getElementById("fullImage").src = "";
     }
   </script>
 </body>
