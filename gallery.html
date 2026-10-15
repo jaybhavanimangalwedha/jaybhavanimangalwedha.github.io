@@ -186,7 +186,7 @@
       let imgSrc = `${year}/${year}day${i}.jpg`;
       daysHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" loading="lazy" decoding="async" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${imgSrc}" fetchpriority="high" decoding="async" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
           <div class="photo-title">${dayNames[i-1]}</div>
         </div>
       `;
@@ -195,7 +195,7 @@
         let subImgSrc = `${year}/${year}day${i}_${j}.jpg`;
         daysHtml += `
           <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)" style="display:none;" id="sub-${i}-${j}">
-            <img src="${subImgSrc}" loading="lazy" decoding="async" alt="Day ${i} - ${j}" onload="document.getElementById('sub-${i}-${j}').style.display='flex';" onerror="this.parentElement.style.display='none';">
+            <img src="${subImgSrc}" fetchpriority="high" decoding="async" alt="Day ${i} - ${j}" onload="document.getElementById('sub-${i}-${j}').style.display='flex';" onerror="this.parentElement.style.display='none';">
             <div class="photo-title">${dayNames[i-1]} (फोटो ${j})</div>
           </div>
         `;
@@ -215,7 +215,7 @@
       let imgSrc = `${year}/${year}${item.file}`;
       otherHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${imgSrc}" fetchpriority="high" decoding="async" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
           <div class="photo-title">${item.title}</div>
         </div>
       `;
