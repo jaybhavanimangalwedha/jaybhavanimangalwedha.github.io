@@ -89,7 +89,6 @@
       z-index: 0;
     }
 
-    /* फोटो लोड झाल्यावर मागे फिरणारे गोल चक्र बंद करण्यासाठी */
     .photo-card.loaded::before {
       display: none;
     }
@@ -170,7 +169,7 @@
   <!-- The Modal -->
   <div id="imageModal" class="modal">
     <span class="close-btn" onclick="closeFullImg()">&times;</span>
-    <img class="modal-content" id="fullImage" fetchpriority="high" decoding="async">
+    <img class="modal-content" id="fullImage" decoding="async">
   </div>
 
   <script>
@@ -185,26 +184,88 @@
       "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस"
     ];
 
-    // १. आधी फक्त १ ते १० दिवसांचे मुख्य फोटो लोड करणे
-    let daysHtml = '';
-    for (let i = 1; i <= 10; i++) {
-      let imgSrc = `${year}/${year}day${i}.jpg`;
-      let priorityAttr = i <= 4 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"';
-      
-      daysHtml += `
-        <div class="photo-card" id="main-day-${i}" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" ${priorityAttr} decoding="async" alt="${dayNames[i-1]}" 
-               onload="this.parentElement.classList.add('loaded'); checkSubImage(${i}, 1);" 
-               onerror="this.parentElement.style.display='none'; checkSubImage(${i}, 1);">
-          <div class="photo-title">${dayNames[i-1]}</div>
-        </div>
-      `;
-    }
-    document.getElementById('daysGrid').innerHTML = daysHtml;
+    const otherItemsList = [
+      { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
+      { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
+      { file: 'vishesh.jpg', title: 'विशेष क्षण' },
+      { file: 'aarti.jpg', title: 'महाआरती' },
+      { file: 'rath.jpg', title: 'देवीरथ सजावट' },
+      { file: 'rangoli.jpg', title: 'विशेष रांगोळी' },
+      { file: 'bhakti.jpg', title: 'भक्तिमय क्षण' },
+      { file: 'miravnuk.jpg', title: 'दसरा मिरवणूक क्षण' }
+    ];
 
-    // २. स्मार्ट उप-फोटो चेकिंग: मुख्य फोटो आल्यानंतरच क्रमाक्रमाने (_1, _2...) फोटो आहेत का ते तपासणे
+    // सर्व फोटो लोड करायची एकच 'स्मार्ट रांग' (Queue) तयार केली आहे.
+    // ही रांग एका वेळी फक्त एकाच फोटोला इंटरनेटवरून बोलावेल.
+    
+    let loadQueue = [];
+
+    // १. १० दिवसांचे मुख्य फोटो रांगेत टाका
+    for (let i = 1; i <= 10; i++) {
+      loadQueue.push({
+        type: 'main_day',
+        dayIndex: i,
+        src: `${year}/${year}day${i}.jpg`,
+        title: dayNames[i-1]
+      });
+    }
+
+    // २. 'इतर' मधील फोटो रांगेत टाका
+    otherItemsList.forEach(item => {
+      loadQueue.push({
+        type: 'other_item',
+        src: `${year}/${year}${item.file}`,
+        title: item.title
+      });
+    });
+
+    let queueIndex = 0;
+
+    function processNextPhotoInQueue() {
+      if (queueIndex >= loadQueue.length) {
+        // मुख्य फोटो संपल्यावर उप-फोटोंना (Sub-photos) सुरुवात करा
+        startSubPhotosLoading();
+        return;
+      }
+
+      let item = loadQueue[queueIndex];
+      queueIndex++;
+
+      let tempImg = new Image();
+      tempImg.onload = function() {
+        // फोटो सापडला! आता स्क्रीनवर कार्ड बनवा
+        const card = document.createElement('div');
+        card.className = 'photo-card loaded';
+        card.onclick = function() { openFullImg(item.src); };
+        card.innerHTML = `
+          <img src="${item.src}" decoding="async" alt="${item.title}">
+          <div class="photo-title">${item.title}</div>
+        `;
+
+        if (item.type === 'main_day') {
+          card.id = `main-day-${item.dayIndex}`;
+          document.getElementById('daysGrid').appendChild(card);
+          // मुख्य फोटो लोड झाल्यावर लगेच त्याच्या पहिल्या उप-फोटॉची साखळी चालू करा
+          checkSubImage(item.dayIndex, 1);
+        } else {
+          document.getElementById('otherGrid').appendChild(card);
+        }
+
+        // हा फोटो लोड झाला, आता लगेच रांगेतल्या पुढच्या फोटोला बोलवा!
+        processNextPhotoInQueue();
+      };
+
+      tempImg.onerror = function() {
+        // मुख्य फोटो नसेल तर तो बॉक्स अजिबात बनवणार नाही, थेट पुढच्या फोटोकडे जा
+        processNextPhotoInQueue();
+      };
+
+      tempImg.src = item.src;
+    }
+
+    // ३. उप-फोटो तपासण्याची साखळी (एकमेकांमागोमाग तपासणे)
     function checkSubImage(dayIndex, subIndex) {
-      if (subIndex > 5) return; // जास्तीत जास्त ५ उप-फोटो
+      if (subIndex > 5) return;
 
       let subImgSrc = `${year}/${year}day${dayIndex}_${subIndex}.jpg`;
       let tempImg = new Image();
@@ -229,42 +290,25 @@
           document.getElementById('daysGrid').appendChild(card);
         }
 
-        // पहिला उप-फोटो (_1) सापडला, म्हणूनच आता पुढचा (_2) फोटो आहे का ते तपासा!
+        // पहिला उप-फोटो सापडला, तरच पुढचा (_2) तपासा
         checkSubImage(dayIndex, subIndex + 1);
       };
 
       tempImg.onerror = function() {
-        // जर फोटो नाही सापडला, तर इथेच थांबा! पुढचे फोटो शोधत बसू नका.
+        // उप-फोटो नाही, तिथेच थांबा
       };
 
       tempImg.src = subImgSrc;
     }
 
-    // ३. 'इतर' विभागातील सर्व ८ फोटो लोड करणे
-    const otherItems = [
-      { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
-      { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
-      { file: 'vishesh.jpg', title: 'विशेष क्षण' },
-      { file: 'aarti.jpg', title: 'महाआरती' },
-      { file: 'rath.jpg', title: 'देवीरथ सजावट' },
-      { file: 'rangoli.jpg', title: 'विशेष रांगोळी' },
-      { file: 'bhakti.jpg', title: 'भक्तिमय क्षण' },
-      { file: 'miravnuk.jpg', title: 'दसरा मिरवणूक क्षण' }
-    ];
+    function startSubPhotosLoading() {
+      // सर्व मुख्य फोटो लोड झाल्याची पायरी पूर्ण झाली
+    }
 
-    let otherHtml = '';
-    otherItems.forEach(item => {
-      let imgSrc = `${year}/${year}${item.file}`;
-      otherHtml += `
-        <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" 
-               onload="this.parentElement.classList.add('loaded');" 
-               onerror="this.parentElement.style.display='none';">
-          <div class="photo-title">${item.title}</div>
-        </div>
-      `;
-    });
-    document.getElementById('otherGrid').innerHTML = otherHtml;
+    // गॅलरी उघडताच पहिली प्रक्रिया सुरू करा
+    window.onload = function() {
+      processNextPhotoInQueue();
+    };
 
     function openFullImg(src) {
       if (src) {
