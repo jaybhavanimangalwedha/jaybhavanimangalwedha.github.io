@@ -303,7 +303,7 @@
 
   <!-- Hero Banner -->
   <section id="home" class="hero-banner">
-    <img src="banner.png" alt="जय भवानी नवरात्र महोत्सव मंडळ बॅनर" class="full-width-banner">
+    <img src="banner.png" fetchpriority="high" decoding="async" alt="जय भवानी नवरात्र महोत्सव मंडळ बॅनर" class="full-width-banner">
   </section>
 
   <!-- Gallery Section -->
@@ -369,15 +369,15 @@
     <div style="text-align: center; margin-bottom: 25px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">॥ आजचे विशेष क्षण ॥</h3>
       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;">
-        <img src="today_special_1.jpg" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
-        <img src="today_special_2.jpg" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
+        <img src="today_special_1.jpg" fetchpriority="high" decoding="async" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
+        <img src="today_special_2.jpg" fetchpriority="high" decoding="async" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
       </div>
     </div>
 
     <!-- वासापूजन 2026 -->
     <div style="text-align: center; margin-top: 15px; margin-bottom: 35px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">वासापूजन 2026</h3>
-      <img src="Vasapujan2026.jpg" loading="lazy" alt="वासापूजन 2026" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+      <img src="Vasapujan2026.jpg" fetchpriority="high" decoding="async" alt="वासापूजन 2026" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
     </div>
 
     <div class="grid-3x3">
@@ -431,10 +431,10 @@
   <!-- Video Section - Cloudinary Embed (Multiple Videos) -->
   <section id="video-gallery" class="section-container">
     <h2 class="section-title">व्हिडिओ गॅलरी</h2>
-    
+
     <!-- Flexbox Container for Multiple Videos -->
     <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
-      
+
       <!-- पहिला व्हिडिओ -->
       <div class="video-wrapper" style="width: 100%; max-width: 360px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
         <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
@@ -504,7 +504,7 @@
         <p class="donation-desc">आपल्या योगदानाने उत्सव अधिक भव्य होईल. खालील QR वरून देणगी देऊ शकता.</p>
         <div class="donation-body">
           <div class="qr-container" style="background: #fff; padding: 5px;">
-            <img src="donate-qr.png" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+            <img src="donate-qr.png" fetchpriority="high" decoding="async" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
           </div>
           <div class="donation-actions">
             <div class="upi-logo">UPI<span>&gt;</span></div>
@@ -526,14 +526,14 @@
           <i class="fa-brands fa-instagram"></i> इंस्टाग्राम पेज
         </div>
         <div style="font-size: 13px; color: #ccc; margin-bottom: 15px;">आपल्या पेजला फॉलो करा आणि रोजचे अपडेट्स मिळवा</div>
-        
+
         <div style="background: #fff; padding: 10px; border-radius: 10px; display: inline-block; margin-bottom: 15px; border: 2px solid var(--gold-primary);">
           <div id="qrcode" style="display: flex; justify-content: center;"></div>
         </div>
         <div style="font-weight: bold; font-size: 12px; color: var(--gold-light); margin-bottom: 15px; letter-spacing: 1px;">
           @JAY_BHAVANI_NAVRATRA_MAHOTSAV_
         </div>
-        
+
         <button class="btn-action" onclick="startQRScan()" style="width: 100%; padding: 10px; font-size: 15px;">
           <i class="fa-solid fa-camera"></i> 🔍 स्कॅन करा
         </button>
@@ -604,7 +604,7 @@
       <div style="position: absolute; bottom: -2px; right: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-left: none; border-top: none;"></div>
       <div style="position: absolute; top: -2px; right: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-left: none; border-bottom: none;"></div>
       <div style="position: absolute; bottom: -2px; left: -2px; width: 40px; height: 40px; border: 4px solid #32cd32; border-radius: 5px; border-right: none; border-top: none;"></div>
-      
+
       <i class="fa-solid fa-qrcode" style="font-size: 120px; color: rgba(50, 205, 50, 0.3);"></i>
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #32cd32; box-shadow: 0 0 15px 5px rgba(50, 205, 50, 0.6); animation: scanLaser 1.2s ease-in-out infinite alternate;"></div>
     </div>
@@ -695,7 +695,7 @@
       const statusText = document.getElementById("scan-status-text");
 
       overlay.style.display = "flex";
-      
+
       setTimeout(() => {
         statusText.innerText = "QR कोड स्कॅन करत आहे...";
       }, 800);
@@ -707,7 +707,7 @@
       setTimeout(() => {
         statusText.innerText = "✅ स्कॅन यशस्वी!";
         statusText.style.color = "#fff";
-        
+
         setTimeout(() => {
           window.location.href = instagramURL;
         }, 500);
