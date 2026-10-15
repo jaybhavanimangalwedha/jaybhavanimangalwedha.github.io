@@ -164,7 +164,7 @@
   <!-- The Modal -->
   <div id="imageModal" class="modal">
     <span class="close-btn" onclick="closeFullImg()">&times;</span>
-    <img class="modal-content" id="fullImage" loading="lazy" decoding="async">
+    <img class="modal-content" id="fullImage" fetchpriority="high" decoding="async">
   </div>
 
   <script>
@@ -186,7 +186,7 @@
       let imgSrc = `${year}/${year}day${i}.jpg`;
       daysHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" fetchpriority="high" decoding="async" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${imgSrc}" loading="eager" fetchpriority="high" decoding="async" alt="Day ${i}" onerror="this.onerror=null; this.src='${fallbackImg}';">
           <div class="photo-title">${dayNames[i-1]}</div>
         </div>
       `;
@@ -195,7 +195,7 @@
         let subImgSrc = `${year}/${year}day${i}_${j}.jpg`;
         daysHtml += `
           <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)" style="display:none;" id="sub-${i}-${j}">
-            <img src="${subImgSrc}" fetchpriority="high" decoding="async" alt="Day ${i} - ${j}" onload="document.getElementById('sub-${i}-${j}').style.display='flex';" onerror="this.parentElement.style.display='none';">
+            <img src="${subImgSrc}" loading="eager" fetchpriority="high" decoding="async" alt="Day ${i} - ${j}" onload="document.getElementById('sub-${i}-${j}').style.display='flex';" onerror="this.parentElement.style.display='none';">
             <div class="photo-title">${dayNames[i-1]} (फोटो ${j})</div>
           </div>
         `;
@@ -204,7 +204,7 @@
     document.getElementById('daysGrid').innerHTML = daysHtml;
 
     const otherItems = [
-      { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
+      notices = { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
       { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
       { file: 'vishesh.jpg', title: 'विशेष क्षण' },
       { file: 'aarti.jpg', title: 'महाआरती' }
@@ -215,7 +215,7 @@
       let imgSrc = `${year}/${year}${item.file}`;
       otherHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
-          <img src="${imgSrc}" fetchpriority="high" decoding="async" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
+          <img src="${imgSrc}" loading="eager" fetchpriority="high" decoding="async" alt="${item.title}" onerror="this.onerror=null; this.src='${fallbackImg}';">
           <div class="photo-title">${item.title}</div>
         </div>
       `;
