@@ -6,6 +6,11 @@
   <title id="pageHeaderTitle">उत्सव गॅलरी</title>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- 🔴 Firebase SDKs (Compat version for simple HTML setup) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
   <style>
     :root {
       --bg-dark: #050505;
@@ -89,10 +94,7 @@
       z-index: 0;
     }
 
-    .photo-card.loaded::before {
-      display: none;
-    }
-
+    .photo-card.loaded::before { display: none; }
     .photo-card:hover { border-color: rgba(251, 197, 49, 0.5); transform: translateY(-3px); }
 
     .photo-card img {
@@ -106,7 +108,88 @@
       background-color: transparent;
     }
 
-    .photo-title { padding: 10px; font-weight: 600; font-size: 15px; color: var(--gold-primary); min-height: 20px;}
+    /* 🚀 LIKE BUTTON CSS */
+    .photo-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      min-height: 35px;
+      position: relative;
+      z-index: 10;
+    }
+    .photo-title { 
+      font-weight: 600; 
+      font-size: 13.5px; 
+      color: var(--gold-primary);
+      text-align: left;
+    }
+    
+    .like-section {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+      position: relative;
+      -webkit-tap-highlight-color: transparent; 
+    }
+
+    .heart-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+    }
+
+    .like-icon {
+      font-size: 20px;
+      color: #777; 
+      transition: color 0.1s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .like-icon.liked {
+      color: #ff2d55; 
+      animation: heartBeats 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      filter: drop-shadow(0px 0px 3px rgba(255, 45, 85, 0.4));
+    }
+
+    @keyframes heartBeats {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.3); }
+      50% { transform: scale(0.9); }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* ✨ Unique Multi-Color Floating Hearts Animation */
+    .floating-heart {
+      position: absolute;
+      bottom: 5px;
+      color: var(--h-color, #ff2d55); 
+      font-size: 14px;
+      pointer-events: none;
+      z-index: 20;
+      opacity: 0;
+      animation: floatUp 0.8s ease-out forwards;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translate(0, 0) scale(0.5) rotate(0deg); opacity: 1; }
+      100% { transform: translate(var(--tx), -60px) scale(1.2) rotate(var(--rot)); opacity: 0; }
+    }
+
+    .like-count {
+      font-size: 15px;
+      color: #ccc;
+      font-weight: 700;
+      min-width: 20px;
+      text-align: right;
+    }
 
     .section-divider {
       display: flex; align-items: center; text-align: center; color: var(--gold-primary); margin: 30px 0 20px;
@@ -117,30 +200,14 @@
     .section-divider span { padding: 0 15px; font-size: 18px; font-weight: 800; }
 
     .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 9999; 
-      padding-top: 50px; 
-      left: 0; top: 0; 
-      width: 100%; height: 100%; 
-      background-color: rgba(0,0,0,0.95);
+      display: none; position: fixed; z-index: 9999; padding-top: 50px; 
+      left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95);
     }
     .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 95%;
-      max-height: 85vh;
-      object-fit: contain;
-      border-radius: 5px;
+      margin: auto; display: block; max-width: 95%; max-height: 85vh; object-fit: contain; border-radius: 5px;
     }
     .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 25px;
-      color: #fff;
-      font-size: 35px;
-      font-weight: bold;
-      cursor: pointer;
+      position: absolute; top: 15px; right: 25px; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer;
     }
     .close-btn:hover { color: var(--gold-primary); }
   </style>
@@ -163,19 +230,34 @@
 
     <div class="section-divider"><span>इतर</span></div>
     <div class="grid" id="otherGrid"></div>
-
   </div>
 
-  <!-- The Modal -->
   <div id="imageModal" class="modal">
     <span class="close-btn" onclick="closeFullImg()">&times;</span>
     <img class="modal-content" id="fullImage" fetchpriority="high" decoding="async">
   </div>
 
   <script>
+    // ==========================================
+    // 🔴 FIREBASE SETUP (Tuza pathavlela Code)
+    // ==========================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyC9A3RcrgXDmUcjwO6_UtT0_Tp2uaCUK-w",
+      authDomain: "jaybhavanigallary.firebaseapp.com",
+      projectId: "jaybhavanigallary",
+      storageBucket: "jaybhavanigallary.firebasestorage.app",
+      messagingSenderId: "259936576728",
+      appId: "1:259936576728:web:d39b97d4deb15a3a95e3ad",
+      measurementId: "G-55SBB2NXFX"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    // ==========================================
+
     const urlParams = new URLSearchParams(window.location.search);
     const year = urlParams.get('year') || '2017';
-
     document.getElementById('pageHeaderTitle').innerText = year + ' - उत्सव गॅलरी';
     document.getElementById('mainTitle').innerHTML = year + ' उत्सव गॅलरी <span>जय भवानी नवरात्र महोत्सव मंडळ, मंगळवेढा</span><span class="subtitle-extra">जय भवानी प्रसन्न</span>';
 
@@ -183,33 +265,147 @@
       "पहिला दिवस", "दुसरा दिवस", "तिसरा दिवस", "चौथा दिवस", "पाचवा दिवस", 
       "सहावा दिवस", "सातवा दिवस", "आठवा दिवस", "नववा दिवस", "दहावा दिवस"
     ];
-
-    // --- Cloudinary Base URL ---
     const cloudBase = "https://res.cloudinary.com/a2l69ehz/image/upload/v1/";
 
-    // १. आधी फक्त १ ते १० दिवसांचे मुख्य फोटो लोड करणे
+    // 🚀 SMART FAKE LIKE SYSTEM (Hash Logic)
+    function getBaseLikes(imgId) {
+      let hash = 0;
+      for (let i = 0; i < imgId.length; i++) {
+        hash = imgId.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return 20 + (Math.abs(hash) % 31); // 20 ते 50 च्या मध्ये फिक्स फेक लाईक्स
+    }
+
+    let likesData = {};
+
+    function initFirebaseForImage(imgId) {
+      const docRef = db.collection("gallery_likes").doc(imgId);
+      const baseLikes = getBaseLikes(imgId);
+
+      likesData[imgId] = {
+         base: baseLikes,
+         realClicks: 0,
+         isLikedLocally: localStorage.getItem('liked_' + imgId) === 'true'
+      };
+
+      // Real-time listener: Kunipan like kela ki lagech update honar
+      docRef.onSnapshot((doc) => {
+         if (doc.exists) {
+             likesData[imgId].realClicks = doc.data().clicks || 0;
+         }
+         updateUI(imgId);
+      }, (error) => {
+         console.log("Firestore Database Error:", error);
+         updateUI(imgId); 
+      });
+    }
+
+    function updateUI(imgId) {
+       let data = likesData[imgId];
+       if(!data) return;
+       
+       let icon = document.getElementById('icon-' + imgId);
+       let countSpan = document.getElementById('count-' + imgId);
+       
+       if(icon && countSpan) {
+          // Fake Base + Real Clicks chi berij (Addition)
+          countSpan.innerText = data.base + data.realClicks;
+          if(data.isLikedLocally) {
+             icon.classList.remove('fa-regular');
+             icon.classList.add('fa-solid', 'liked');
+          } else {
+             icon.classList.remove('fa-solid', 'liked');
+             icon.classList.add('fa-regular');
+          }
+       }
+    }
+
+    // ✨ Next Level Unique Neon Colors Floating Hearts
+    function createFloatingHearts(wrapperId) {
+      const wrapper = document.getElementById(wrapperId);
+      if (!wrapper) return;
+
+      const premiumColors = ['#ff2d55', '#d12f77', '#a500b5', '#ff4fb6', '#9b59b6', '#ff6b81', '#c2186b', '#794980'];
+      let shuffledColors = [...premiumColors].sort(() => 0.5 - Math.random());
+
+      for (let i = 0; i < 4; i++) {
+        const heart = document.createElement('i');
+        heart.className = 'fa-solid fa-heart floating-heart';
+        
+        const randomX = (Math.random() - 0.5) * 50; 
+        const randomRot = (Math.random() - 0.5) * 40;
+        const uniqueColor = shuffledColors.pop();
+        
+        heart.style.setProperty('--tx', `${randomX}px`);
+        heart.style.setProperty('--rot', `${randomRot}deg`);
+        heart.style.setProperty('--h-color', uniqueColor); 
+        heart.style.animationDelay = `${i * 0.12}s`;
+
+        wrapper.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 1000 + (i * 120));
+      }
+    }
+
+    // Like button var click kelyavar...
+    function toggleLike(event, imgId) {
+       event.stopPropagation();
+       let data = likesData[imgId];
+       if(!data) return;
+
+       let wrapperId = 'wrapper-' + imgId;
+       const docRef = db.collection("gallery_likes").doc(imgId);
+
+       data.isLikedLocally = !data.isLikedLocally;
+       localStorage.setItem('liked_' + imgId, data.isLikedLocally);
+
+       if (data.isLikedLocally) {
+           data.realClicks++;
+           createFloatingHearts(wrapperId);
+           // Firebase var +1 pathvane
+           docRef.set({ clicks: firebase.firestore.FieldValue.increment(1) }, { merge: true });
+       } else {
+           data.realClicks--;
+           // Firebase varun -1 karne
+           docRef.set({ clicks: firebase.firestore.FieldValue.increment(-1) }, { merge: true });
+       }
+       updateUI(imgId);
+    }
+
+    // १. मुख्य फोटो लोड करणे
     let daysHtml = '';
     for (let i = 1; i <= 10; i++) {
-      let imgSrc = `${cloudBase}${year}day${i}.jpg`; // येथे बदल केला आहे
+      let imgSrc = `${cloudBase}${year}day${i}.jpg`;
       let priorityAttr = i <= 4 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"';
+      let imgId = `main_day_${i}`;
 
       daysHtml += `
         <div class="photo-card" id="main-day-${i}" onclick="openFullImg(this.querySelector('img').src)">
           <img src="${imgSrc}" ${priorityAttr} decoding="async" alt="${dayNames[i-1]}" 
                onload="this.parentElement.classList.add('loaded'); checkSubImage(${i}, 1);" 
                onerror="this.parentElement.style.display='none'; checkSubImage(${i}, 1);">
-          <div class="photo-title">${dayNames[i-1]}</div>
+          <div class="photo-info">
+             <div class="photo-title">${dayNames[i-1]}</div>
+             <div class="like-section" onclick="toggleLike(event, '${imgId}')">
+                <div class="heart-wrapper" id="wrapper-${imgId}">
+                  <i class="fa-regular fa-heart like-icon" id="icon-${imgId}"></i>
+                </div>
+                <span class="like-count" id="count-${imgId}">...</span>
+             </div>
+          </div>
         </div>
       `;
     }
     document.getElementById('daysGrid').innerHTML = daysHtml;
+    // Load data from Firebase
+    for(let i=1; i<=10; i++) { initFirebaseForImage(`main_day_${i}`); }
 
-    // २. स्मार्ट उप-फोटो चेकिंग
+    // २. उप-फोटो लोड करणे
     function checkSubImage(dayIndex, subIndex) {
       if (subIndex > 5) return; 
 
-      let subImgSrc = `${cloudBase}${year}day${dayIndex}_${subIndex}.jpg`; // येथे बदल केला आहे
+      let subImgSrc = `${cloudBase}${year}day${dayIndex}_${subIndex}.jpg`;
       let tempImg = new Image();
+      let imgId = `sub_${dayIndex}_${subIndex}`;
 
       tempImg.onload = function() {
         const card = document.createElement('div');
@@ -218,27 +414,31 @@
         card.onclick = function() { openFullImg(subImgSrc); };
         card.innerHTML = `
           <img src="${subImgSrc}" decoding="async" alt="${dayNames[dayIndex-1]} (फोटो ${subIndex})">
-          <div class="photo-title">${dayNames[dayIndex-1]} (फोटो ${subIndex})</div>
+          <div class="photo-info">
+             <div class="photo-title">${dayNames[dayIndex-1]} (${subIndex})</div>
+             <div class="like-section" onclick="toggleLike(event, '${imgId}')">
+                <div class="heart-wrapper" id="wrapper-${imgId}">
+                  <i class="fa-regular fa-heart like-icon" id="icon-${imgId}"></i>
+                </div>
+                <span class="like-count" id="count-${imgId}">...</span>
+             </div>
+          </div>
         `;
 
-        let prevElem = subIndex === 1 
-          ? document.getElementById(`main-day-${dayIndex}`) 
-          : document.getElementById(`sub-${dayIndex}-${subIndex - 1}`);
-
+        let prevElem = subIndex === 1 ? document.getElementById(`main-day-${dayIndex}`) : document.getElementById(`sub-${dayIndex}-${subIndex - 1}`);
         if (prevElem && prevElem.parentNode) {
           prevElem.insertAdjacentElement('afterend', card);
         } else {
           document.getElementById('daysGrid').appendChild(card);
         }
-
+        initFirebaseForImage(imgId);
         checkSubImage(dayIndex, subIndex + 1);
       };
-
       tempImg.onerror = function() { };
       tempImg.src = subImgSrc;
     }
 
-    // ३. 'इतर' विभागातील सर्व फोटो लोड करणे
+    // ३. 'इतर' फोटो लोड करणे
     const otherItems = [
       { file: 'sajavat.jpg', title: '✨ मंदिर देखावा' },
       { file: 'shringar.jpg', title: 'देवीचा श्रृंगार' },
@@ -252,18 +452,29 @@
 
     let otherHtml = '';
     otherItems.forEach(item => {
-      let imgSrc = `${cloudBase}${year}${item.file}`; // येथे बदल केला आहे
+      let imgSrc = `${cloudBase}${year}${item.file}`;
+      let imgId = `other_${item.file.replace('.jpg', '')}`;
       otherHtml += `
         <div class="photo-card" onclick="openFullImg(this.querySelector('img').src)">
           <img src="${imgSrc}" loading="lazy" decoding="async" alt="${item.title}" 
                onload="this.parentElement.classList.add('loaded');" 
                onerror="this.parentElement.style.display='none';">
-          <div class="photo-title">${item.title}</div>
+          <div class="photo-info">
+             <div class="photo-title">${item.title}</div>
+             <div class="like-section" onclick="toggleLike(event, '${imgId}')">
+                <div class="heart-wrapper" id="wrapper-${imgId}">
+                  <i class="fa-regular fa-heart like-icon" id="icon-${imgId}"></i>
+                </div>
+                <span class="like-count" id="count-${imgId}">...</span>
+             </div>
+          </div>
         </div>
       `;
     });
     document.getElementById('otherGrid').innerHTML = otherHtml;
+    otherItems.forEach(item => { initFirebaseForImage(`other_${item.file.replace('.jpg', '')}`); });
 
+    // Full Image Modal
     function openFullImg(src) {
       if (src) {
         document.getElementById("imageModal").style.display = "block";
