@@ -340,14 +340,37 @@
         </div>
     </div>
 
-    <!-- ॥ आजचे विशेष क्षण ॥ (Cloudinary URLs) -->
+    <!-- ॥ आजचे विशेष क्षण ॥ (Dynamic Box - Bot Connected) -->
     <div style="text-align: center; margin-bottom: 25px;">
       <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">॥ आजचे विशेष क्षण ॥</h3>
-      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;">
-        <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1/today_special_1.jpg" fetchpriority="high" decoding="async" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
-        <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1/today_special_2.jpg" fetchpriority="high" decoding="async" onerror="this.style.display='none'" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">
+      
+      <div id="special-moments-container" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;">
+        <div style="color: #aaa; font-size: 14px;">लोड होत आहे...</div>
       </div>
     </div>
+
+    <!-- बॉटवरून डेटा खेचून आणणारा JavaScript -->
+    <script>
+      fetch('special.json?v=' + new Date().getTime())
+      .then(response => response.json())
+      .then(data => {
+          let html = '';
+          if (data.img1) {
+              html += `<img src="${data.img1}" fetchpriority="high" decoding="async" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">`;
+          }
+          if (data.img2) {
+              html += `<img src="${data.img2}" fetchpriority="high" decoding="async" style="max-width: 100%; width: 450px; border-radius: 12px; border: 1px solid var(--gold-primary); box-shadow: 0 4px 15px rgba(251, 197, 49, 0.2);">`;
+          }
+          if (!data.img1 && !data.img2) {
+              html = `<div style="color: #aaa; font-size: 14px;">सध्या कोणतेही विशेष क्षण उपलब्ध नाहीत.</div>`;
+          }
+          document.getElementById('special-moments-container').innerHTML = html;
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('special-moments-container').innerHTML = `<div style="color: #aaa; font-size: 14px;">सध्या कोणतेही विशेष क्षण उपलब्ध नाहीत.</div>`;
+      });
+    </script>
 
     <!-- वासापूजन 2026 (Cloudinary URL) -->
     <div style="text-align: center; margin-top: 15px; margin-bottom: 35px;">
