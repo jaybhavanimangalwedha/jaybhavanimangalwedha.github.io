@@ -343,12 +343,50 @@
     </div>
    </div>
    <!-- ॥ आजचे विशेष क्षण ॥ (Dynamic Box - Bot Connected) -->
-   <div style="text-align: center; margin-bottom: 25px;">
-    <!-- मंडळाचा लोगो: "॥ आजचे विशेष क्षण ॥" हेडिंगच्या अगदी वर -->
-    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-     <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1792186752/file_00000000703881f4a357141eb17f39da.png" alt="मंडळ लोगो" style="width: 250px; height: auto; object-fit: contain;">
+   <div style="text-align: center; margin-bottom: 25px; position: relative;">
+    
+    <!-- Next Level SVG Filter: Ultra-Thin Line + Double Premium Glow -->
+    <svg style="width:0; height:0; position:absolute;" aria-hidden="true" focusable="false">
+      <filter id="next-level-glow" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+        
+        <!-- १. कचरा साफ करणे (Smooth Edge) -->
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur_alpha" />
+        <feComponentTransfer in="blur_alpha" result="clean_alpha">
+          <feFuncA type="linear" slope="15" intercept="-5" />
+        </feComponentTransfer>
+        
+        <!-- २. अतिशय बारीक लाईन आणि गॅप तयार करणे -->
+        <feMorphology in="clean_alpha" operator="dilate" radius="4" result="outer_edge" />   
+        <feMorphology in="clean_alpha" operator="dilate" radius="3" result="inner_edge" />   
+        <feComposite in="outer_edge" in2="inner_edge" operator="out" result="thin_ring" />
+        
+        <!-- ३. लाईनला चमकदार गोल्डन रंग देणे -->
+        <feFlood flood-color="#fbc531" result="gold_color" />
+        <feComposite in="gold_color" in2="thin_ring" operator="in" result="gold_ring" />
+        
+        <!-- ४. 'Next Level' डबल ग्लो (Dual Glow Effect) -->
+        <feGaussianBlur in="gold_ring" stdDeviation="4" result="soft_glow" /> 
+        <feGaussianBlur in="gold_ring" stdDeviation="1" result="sharp_glow" /> 
+        
+        <!-- ५. सर्व एकत्र जोडणे -->
+        <feMerge>
+          <feMergeNode in="soft_glow" />     
+          <feMergeNode in="sharp_glow" />    
+          <feMergeNode in="gold_ring" />     
+          <feMergeNode in="SourceGraphic" /> 
+        </feMerge>
+      </filter>
+    </svg>
+
+    <!-- तुमचा लोगो (साईझ 20% वाढवली आहे - width: 300px) -->
+    <div style="position: relative; display: inline-block; margin-bottom: 15px;">
+        <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1792189344/1792189215586.png" 
+             style="display: block; width: 300px; height: auto; object-fit: contain; filter: url(#next-level-glow); padding: 15px;" 
+             alt="Logo">
     </div>
+
     <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">॥ आजचे विशेष क्षण ॥</h3>
+    
     <div id="special-moments-container" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;">
      <div style="color: #aaa; font-size: 14px;">लोड होत आहे...</div>
     </div>
@@ -588,7 +626,7 @@
   </div>
   <!-- Footer -->
   <footer class="footer">
-   <div class="quote">"मातेच्या कृपेने सर्वांचे जीवन सुखमय होवो !"</div>
+   <div class="quote">"मातेच्या कृपेने सर्वांचे মজकूर जीवन सुखमय होवो !"</div>
    <div class="social-icons">
     <a href="#"><i class="fa-brands fa-facebook-f"></i></a> <a href="#"><i class="fa-brands fa-instagram"></i></a> <a href="#"><i class="fa-brands fa-youtube"></i></a>
    </div>
