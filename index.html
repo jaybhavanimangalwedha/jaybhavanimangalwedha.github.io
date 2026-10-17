@@ -342,43 +342,45 @@
      </div>
     </div>
    </div>
-   <!-- ॥ आजचे विशेष क्षण ॥ (Dynamic Box - Bot Connected) -->
+   <!-- ॥ आजचे विशेष क्षण ॥ -->
    <div style="text-align: center; margin-bottom: 25px; position: relative;">
     
-    <!-- Next Level SVG Filter: Ultra-Thin Line + Double Premium Glow -->
-    <svg style="width:0; height:0; position:absolute;" aria-hidden="true" focusable="false">
-      <filter id="next-level-glow" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
-        
-        <!-- १. कचरा साफ करणे (Smooth Edge) -->
-        <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur_alpha" />
-        <feComponentTransfer in="blur_alpha" result="clean_alpha">
-          <feFuncA type="linear" slope="15" intercept="-5" />
-        </feComponentTransfer>
-        
-        <!-- २. अतिशय बारीक लाईन आणि गॅप तयार करणे -->
-        <feMorphology in="clean_alpha" operator="dilate" radius="4" result="outer_edge" />   
-        <feMorphology in="clean_alpha" operator="dilate" radius="3" result="inner_edge" />   
-        <feComposite in="outer_edge" in2="inner_edge" operator="out" result="thin_ring" />
-        
-        <!-- ३. लाईनला चमकदार गोल्डन रंग देणे -->
-        <feFlood flood-color="#fbc531" result="gold_color" />
-        <feComposite in="gold_color" in2="thin_ring" operator="in" result="gold_ring" />
-        
-        <!-- ४. 'Next Level' डबल ग्लो (Dual Glow Effect) -->
-        <feGaussianBlur in="gold_ring" stdDeviation="4" result="soft_glow" /> 
-        <feGaussianBlur in="gold_ring" stdDeviation="1" result="sharp_glow" /> 
-        
-        <!-- ५. सर्व एकत्र जोडणे -->
-        <feMerge>
-          <feMergeNode in="soft_glow" />     
-          <feMergeNode in="sharp_glow" />    
-          <feMergeNode in="gold_ring" />     
-          <feMergeNode in="SourceGraphic" /> 
-        </feMerge>
-      </filter>
-    </svg>
+    <style>
+        /* गुलाबाच्या पाकळ्यांसारखा नैसर्गिक आकार */
+        .gold-flake {
+            position: absolute;
+            top: 0;
+            border-radius: 60% 40% 60% 40% / 50% 60% 40% 50%; /* गुलाबाच्या पाकळीचा नैसर्गिक आकार */
+            animation: fallDown 5s linear infinite;
+            opacity: 0;
+            z-index: 99; /* इमेज आणि इतर घटकांच्या वर दिसण्यासाठी */
+            pointer-events: none; /* क्लिक्स अडू नयेत म्हणून */
+            transform-origin: center;
+        }
+        @keyframes fallDown {
+            0% { transform: translateY(-50px) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.9; }
+            50% { transform: translateY(150px) rotate(180deg) scale(1.1); }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(350px) rotate(360deg) scale(0.9); opacity: 0; }
+        }
+        /* प्रत्येक पाकळीसाठी गुलाबाचे वेगवेगळे नैसर्गिक रंग आणि आकार */
+        .gold-flake:nth-child(1) { left: 20%; width: 10px; height: 14px; animation-delay: 0s; animation-duration: 4.5s; background: linear-gradient(135deg, #ff1e56, #ff6b81); box-shadow: 0 0 6px rgba(255, 30, 86, 0.6);}
+        .gold-flake:nth-child(2) { left: 50%; width: 12px; height: 16px; animation-delay: 1.5s; animation-duration: 5.2s; background: linear-gradient(135deg, #e84393, #fd79a8); box-shadow: 0 0 6px rgba(232, 67, 147, 0.6);}
+        .gold-flake:nth-child(3) { left: 80%; width: 9px; height: 13px; animation-delay: 2.5s; animation-duration: 3.8s; background: linear-gradient(135deg, #ff4757, #ff6b81); box-shadow: 0 0 6px rgba(255, 71, 87, 0.6);}
+        .gold-flake:nth-child(4) { left: 35%; width: 11px; height: 15px; animation-delay: 0.8s; animation-duration: 4.8s; background: linear-gradient(135deg, #c0392b, #e74c3c); box-shadow: 0 0 6px rgba(192, 57, 43, 0.6);}
+        .gold-flake:nth-child(5) { left: 65%; width: 10px; height: 14px; animation-delay: 3s; animation-duration: 4.2s; background: linear-gradient(135deg, #ff6348, #ff7675); box-shadow: 0 0 6px rgba(255, 99, 72, 0.6);}
+    </style>
 
-    <!-- तुमचा लोगो (साईझ 20% वाढवली आहे - width: 300px) -->
+    <!-- जुना ग्लो फिल्टर इथे टाका -->
+
+    <!-- रंगीबेरंगी गुलाबाच्या पाकळ्या -->
+    <div class="gold-flake"></div>
+    <div class="gold-flake"></div>
+    <div class="gold-flake"></div>
+    <div class="gold-flake"></div>
+    <div class="gold-flake"></div>
+
     <div style="position: relative; display: inline-block; margin-bottom: 15px;">
         <img src="https://res.cloudinary.com/a2l69ehz/image/upload/v1792189344/1792189215586.png" 
              style="display: block; width: 300px; height: auto; object-fit: contain; filter: url(#next-level-glow); padding: 15px;" 
@@ -386,11 +388,9 @@
     </div>
 
     <h3 style="color: var(--gold-primary); font-family: 'Mukta', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 15px; text-shadow: 0 0 10px rgba(251, 197, 49, 0.2);">॥ आजचे विशेष क्षण ॥</h3>
-    
-    <div id="special-moments-container" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;">
-     <div style="color: #aaa; font-size: 14px;">लोड होत आहे...</div>
-    </div>
+    <div id="special-moments-container" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 0 15px;"><div style="color: #aaa; font-size: 14px;">लोड होत आहे...</div></div>
    </div>
+
    <!-- बॉटवरून डेटा खेचून आणणारा JavaScript -->
    <script>
       fetch('special.json?v=' + new Date().getTime())
