@@ -17,6 +17,10 @@
     .nav-title { font-family: 'Mukta', sans-serif; font-weight: 800; color: var(--gold-primary); font-size: 22px; margin-top: 2px; }
     
     .section-container { max-width: 1000px; margin: 85px auto 35px; padding: 0 15px; text-align: center; }
+    
+    /* Download Button Styling */
+    .download-btn { background: linear-gradient(90deg, #fbc531, #e1b12c); color: #000; text-decoration: none; padding: 8px 20px; border-radius: 20px; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; margin-top: 10px; box-shadow: 0 4px 10px rgba(251, 197, 49, 0.3); transition: 0.3s; border: none; cursor: pointer; }
+    .download-btn:hover { box-shadow: 0 6px 15px rgba(251, 197, 49, 0.5); transform: translateY(-2px); }
   </style>
  </head>
  <body>
@@ -26,23 +30,44 @@
   </nav>
 
   <section class="section-container">
-   <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
-      
-    <!-- Video 1 -->
-    <div class="video-wrapper" style="width: 100%; max-width: 360px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-     <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
-      <iframe src="https://player.cloudinary.com/embed/?cloud_name=a2l69ehz&amp;public_id=1791814136046&amp;player[showLogo]=false" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-     </div>
-    </div>
-
-    <!-- Video 2 -->
-    <div class="video-wrapper" style="width: 100%; max-width: 360px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-     <div style="position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 8px;">
-      <iframe src="https://player.cloudinary.com/embed/?cloud_name=a2l69ehz&amp;public_id=cinevortex_27_20261014_022544952&amp;player[showLogo]=false" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-     </div>
-    </div>
-
+   <div id="video-list" style="display: flex; flex-direction: column; gap: 30px; align-items: center;">
+      <div style="color: #ccc; font-size: 14px;">व्हिडिओ लोड होत आहेत...</div>
    </div>
   </section>
+
+  <script>
+    // JSON फाईल मधून व्हिडिओ डेटा आणणे
+    fetch('videos.json?v=' + new Date().getTime())
+    .then(response => response.json())
+    .then(videos => {
+        let html = '';
+        if(videos.length === 0) {
+            html = '<div style="color: #aaa; font-size: 14px;">सध्या कोणतेही व्हिडिओ उपलब्ध नाहीत.</div>';
+        } else {
+            // प्रत्येक व्हिडिओसाठी बॉक्स आणि डाउनलोड बटण बनवणे
+            videos.forEach(video => {
+                // fl_attachment वापरून डायरेक्ट डाउनलोड लिंक बनवणे
+                let downloadLink = video.url.replace('/upload/', '/upload/fl_attachment/');
+                
+                html += `
+                <div style="width: 100%; max-width: 360px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; align-items: center;">
+                    <video controls controlsList="nodownload" style="width: 100%; border-radius: 8px; background: #000; max-height: 400px;">
+                        <source src="${video.url}" type="video/mp4">
+                        तुमचा ब्राउझर व्हिडिओ सपोर्ट करत नाही.
+                    </video>
+                    <a href="${downloadLink}" download class="download-btn">
+                        <i class="fa-solid fa-download"></i> व्हिडिओ डाउनलोड करा
+                    </a>
+                </div>
+                `;
+            });
+        }
+        document.getElementById('video-list').innerHTML = html;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('video-list').innerHTML = '<div style="color: #aaa; font-size: 14px;">व्हिडिओ लोड करताना एरर आला.</div>';
+    });
+  </script>
  </body>
 </html>
