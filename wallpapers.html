@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="mr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HD देवी वॉलपेपर - जय भवानी नवरात्र महोत्सव मंडळ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700;800&family=Poppins:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --bg-dark: #050505; --gold-primary: #fbc531; --card-border: rgba(251, 197, 49, 0.2); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: var(--bg-dark); color: #fff; font-family: 'Mukta', sans-serif; }
+    
+    /* Navbar styling */
+    .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(5, 5, 5, 0.95); border-bottom: 1px solid var(--card-border); z-index: 1000; display: flex; align-items: center; padding: 12px 20px; gap: 15px; }
+    .back-btn { color: var(--gold-primary); font-size: 20px; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; border-radius: 50%; background: rgba(251, 197, 49, 0.1); }
+    .nav-title { font-family: 'Mukta', sans-serif; font-weight: 800; color: var(--gold-primary); font-size: 22px; margin-top: 2px; }
+    
+    .section-container { max-width: 1000px; margin: 85px auto 35px; padding: 0 15px; text-align: center; }
+    .page-desc { color: #ccc; font-size: 15px; margin-bottom: 25px; }
+
+    /* Wallpaper Grid CSS */
+    .wallpaper-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .wallpaper-card { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.5); aspect-ratio: 9/16; background: #111; }
+    .wallpaper-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .wallpaper-card:hover img { transform: scale(1.05); }
+    
+    .download-btn { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: var(--gold-primary); border: 1px solid var(--gold-primary); border-radius: 50%; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; backdrop-filter: blur(5px); transition: 0.3s; z-index: 10; }
+    .download-btn:hover { background: var(--gold-primary); color: #000; transform: scale(1.1); }
+    
+    @media (min-width: 768px) { .wallpaper-grid { grid-template-columns: repeat(3, 1fr); } }
+  </style>
+ </head>
+ <body>
+  <nav class="navbar">
+   <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+   <div class="nav-title">HD देवी वॉलपेपर</div>
+  </nav>
+
+  <section class="section-container">
+   <p class="page-desc">मोबाईलच्या स्क्रीनसाठी खास तयार केलेले HD वॉलपेपर. डाउनलोड बटण दाबा आणि सेव्ह करा.</p>
+   
+   <!-- हा डबा बॉटमधून आपोआप भरेल -->
+   <div id="wallpaper-container" class="wallpaper-grid">
+      <div style="color: #aaa; font-size: 14px; text-align:center; width:100%; grid-column: 1 / -1;">लोड होत आहे...</div>
+   </div>
+  </section>
+
+  <script>
+    fetch('wallpapers.json?v=' + new Date().getTime())
+      .then(response => response.json())
+      .then(data => {
+          const container = document.getElementById('wallpaper-container');
+          
+          if (!data || data.length === 0) {
+              container.innerHTML = `
+                <div class="wallpaper-card" style="display: flex; align-items: center; justify-content: center; border: 1px dashed var(--gold-primary); color: #888; font-size: 14px; flex-direction: column; gap: 10px; grid-column: 1 / -1; max-width: 200px; margin: 0 auto;">
+                 <i class="fa-regular fa-image" style="font-size: 30px; color: var(--gold-primary);"></i>
+                 नवीन वॉलपेपर<br>लवकरच येत आहेत
+                </div>`;
+              return;
+          }
+
+          let html = '';
+          // JSON मधल्या प्रत्येक लिंकसाठी फोटो कार्ड तयार करा
+          data.forEach((url, index) => {
+              html += `
+              <div class="wallpaper-card">
+               <img src="${url}" loading="lazy" alt="Devi Wallpaper ${index + 1}">
+               <a href="${url}" download="Jay_Bhavani_Wallpaper_${index + 1}.jpg" class="download-btn"><i class="fa-solid fa-download"></i></a>
+              </div>`;
+          });
+          container.innerHTML = html;
+      })
+      .catch(error => {
+          console.error('Error fetching wallpapers:', error);
+          document.getElementById('wallpaper-container').innerHTML = '<div style="color: #aaa; font-size: 14px; text-align:center; width:100%; grid-column: 1 / -1;">वॉलपेपर लोड करताना एरर आला.</div>';
+      });
+  </script>
+ </body>
+</html>
